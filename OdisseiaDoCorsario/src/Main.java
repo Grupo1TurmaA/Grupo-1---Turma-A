@@ -17,13 +17,13 @@ public class Main {
         int food = 100;
         int life = 100;
 
-        JFrame frame = new JFrame("Pirata");
+        JFrame frame = new JFrame("Velas do Destino: A Odisséia do Corsário");
         frame.setSize(600, 500);
         JPanel panel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                ImageIcon backgroundImage = new ImageIcon("D:\\downloads\\IMG-20240406-WA0001 (1).jpg");
+                ImageIcon backgroundImage = new ImageIcon("C:\\Users\\edwar\\Downloads\\IMG_1347.PNG");
                 g.drawImage(backgroundImage.getImage(), 0, 0, getWidth(), getHeight(), this);
             }
         };
@@ -78,9 +78,10 @@ public class Main {
                     return;
                 }
                 JOptionPane.showMessageDialog(frame, "Narrador: Você está preso na cela do pirata Barba Negra, pois você é um amotinado que seguiu contra as regras do seu capitão.\n Mas de repente você ouviu um barulho estranho, e quando menos percebe, escuta um tiro de canhão atingir o navio.");
-                TEXTOS(playerName, coinCounter);
+                TEXTOS(playerName, coinCounter, foodLabel);
                 TEXTOS2(playerName, coinCounter);
                 TEXTOS3(playerName, coinCounter);
+                TEXTOS4(playerName, coinCounter);
 
                 coins[0] = 50;
                 coinCounter.setText("Moedas: " + coins[0]);
@@ -92,7 +93,7 @@ public class Main {
         int percavida;
     }
 
-    public static int TEXTOS(String playerName, JLabel coinCounter) {
+    public static void TEXTOS(String playerName, JLabel coinCounter, JLabel foodLabel) {
         Random rand = new Random(1);
         if (playerNames.contains(playerName))
             JOptionPane.showMessageDialog(null, "Narrador: Você fica assustado pois poderia ter morrido, mas ao mesmo tempo agradece ao perceber que a bala de canhão atingiu uma parte da cela do navio, e agora você poderá fugir.");
@@ -108,11 +109,14 @@ public class Main {
         int escolha = JOptionPane.showOptionDialog(null, "Como você prefere enfrentar o tubarão?", "Escolha sua ação", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"Atacar o tubarão", "Tentar modo furtivo"}, null);
         if (escolha == JOptionPane.YES_OPTION) {
             JOptionPane.showMessageDialog(null, "Você decide atacar o tubarão! Corajoso, " + playerName + "!");
+
+            int currentCoins = Integer.parseInt(coinCounter.getText().split(": ")[1]);
+            int totalCoins = currentCoins + 50;
+            coinCounter.setText("Moedas: " + totalCoins);
         } else {
             JOptionPane.showMessageDialog(null, "Você decide tentar modo furtivo para passar pelo tubarão distraindo ele com pote de comida velha.");
-            JOptionPane.showMessageDialog(null, "VOCE PERDEU 20 DE COMIDA E GANHOU 50 DE OURO!");
+            modoFurtivo(playerName, coinCounter, foodLabel);
         }
-        return rand.nextInt();
     }
 
     public static void TEXTOS2(String playerName, JLabel coinCounter) {
@@ -122,40 +126,26 @@ public class Main {
         if (playerNames.contains(playerName))
             JOptionPane.showMessageDialog(null, "Sarah Fortune: Muito bom marujo. \n Não imaginava que você conseguiria equilibrar as situações... \n Se você continuar desse jeito, terei que promover você para um cargo mais importante... ");
         JOptionPane.showMessageDialog(null, "Sarah Fortune: Te darei uma pequena recompensa por ter resgatado nosso tesouro perdido! \n Mas não saia gastando por ai, ouro é uma coisa muito valiosa, " + playerName + ". Administre muito bem...");
-
-        int coinsEarned = 50;
-
-        int currentCoins = Integer.parseInt(coinCounter.getText().split(": ")[1]);
-
-        int totalCoins = currentCoins + coinsEarned;
-
-        coinCounter.setText("Moedas: " + totalCoins);
     }
 
-    public static void modoFurtivo(String playerName, JLabel coinCounter, JLabel foodCounter, boolean attackShark) {
+
+    public static void modoFurtivo(String playerName, JLabel coinCounter, JLabel foodLabel) {
 
         int coinsEarned = 50;
+        int foodLost = 20;
 
-        int foodLost = 80;
-
-
-        int currentFood = Integer.parseInt(foodCounter.getText().split(": ")[1]);
+        int currentFood = Integer.parseInt(foodLabel.getText().split(": ")[1]); // Alterei para comidaLabel
         int totalFood = currentFood - foodLost;
-        foodCounter.setText("Comida: " + totalFood);
+        foodLabel.setText("Comida: " + totalFood); // Alterei para comidaLabel
 
 
-        if (attackShark) {
-            JOptionPane.showMessageDialog(null, "Você decidiu atacar o tubarão!");
-        } else {
-
-            JOptionPane.showMessageDialog(null, "Você está no modo furtivo. Ganhou " + coinsEarned + " moedas, mas perdeu " + foodLost + " de comida.");
-        }
-
+        JOptionPane.showMessageDialog(null, "Você está no modo furtivo. Ganhou " + coinsEarned + " moedas, mas perdeu " + foodLost + " de comida.");
 
         int currentCoins = Integer.parseInt(coinCounter.getText().split(": ")[1]);
         int totalCoins = currentCoins + coinsEarned;
         coinCounter.setText("Moedas: " + totalCoins);
     }
+
 
 
     public static void TEXTOS3(String playerName, JLabel coinCounter) {
@@ -169,10 +159,51 @@ public class Main {
         JOptionPane.showMessageDialog(null, "Sarah Fortune: Negócios é? E de que tipo...?");
         JOptionPane.showMessageDialog(null, "Barbosa: Grandes negócios minha cara Sarah Fortune... \n muito tesouro, rum, joias e especiarias confiscadas pela coroa real...");
         JOptionPane.showMessageDialog(null, "Sarah Fortune: Vocês homens... só pensam em rum e mulheres! \n isso não me interessa, quero saber o quanto de dinheiro vamos ganhar nessa brincadeira!");
-        JOptionPane.showMessageDialog(null, "Barbosa: Muito mais do que você já ganhou ou imaginou ter, e então? Está de acordo? \n Podemos nos unit, eu te garanto que a nossa tripulação vai adorar a ideia... ");
+        JOptionPane.showMessageDialog(null, "Barbosa: Muito mais do que você já ganhou ou imaginou ter, e então? Está de acordo? \n Podemos nos unir, eu te garanto que a nossa tripulação vai adorar a ideia... ");
         JOptionPane.showMessageDialog(null, "Sarah Fortune: Mas é ovio, se envolve dinheiro é claro que vou aceitar, um dia serei feito de ouro!");
-        JOptionPane.showMessageDialog(null, "Narrador; Sarah Fortune aceita a missão em Tortuga. Você junto com o resto da tripulação e com a capitã, se preparam pensando em um plano para atacar os britanicos. ");
+        JOptionPane.showMessageDialog(null, "Narrador: Sarah Fortune aceita a missão em Tortuga. Você junto com o resto da tripulação e com a capitã, se preparam pensando em um plano para atacar os britanicos. ");
         JOptionPane.showMessageDialog(null, "Sarah Fortune: Ok homens, e uquero todos em meu convés! Barbosa, me empreste todos os seus homens. \n Vamos expulsar esses carapaças daqui!");
+        JOptionPane.showMessageDialog(null, "Barbosa: Ficou louca? não deixarei meus homens morrerem pela sua investida burra e precipitada de lutar frente a frente com os britanicos! \n Está vendo a sua direita? tem umas rochas cobrindo a visão deles. Vamos encurála-los pelas costas e trucidá-llos!");
+        JOptionPane.showMessageDialog(null,  playerName + ": Eu tenho uma ideia, sei que sou novo ainda, mas tenho experiencia em batalha, posso dizer com confiança que eu poderei os ajudar com isso. \n Minha tripulação será conhecida por afundar a terrivel coroa britanica no fundo do mar! ");
+        JOptionPane.showMessageDialog(null, "Narrador: O destino dessa missão está novamente em suas mãos \n você agora deve usar seu modo tático, pense em em como atacar, analise bem antes da implementação da estrategia!");
+
+        int escolha = JOptionPane.showOptionDialog(null, "Como você irá resolver essa situação?", "Escolha sua ação: ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"Deveremos atacar. \n Pois a coroa britanica está com bens que não os peretencem", "Deveremos seguir no modo furtivo. \n Sendo mais racional e priorizar a captura do que foi ampreendido."}, null);
+        if (escolha == JOptionPane.YES_OPTION) {
+            int lifeLost = 30;
+            int foodLost = 10;
+
+            int currentLife = Integer.parseInt(lifeLabel.getText().split(": ")[1]);
+            int totalLife = currentLife - lifeLost;
+            lifeLabel.setText("Vida: " + totalLife);
+
+            int currentFood = Integer.parseInt(foodLabel.getText().split(": ")[1]);
+            int totalFood = currentFood - foodLost;
+            foodLabel.setText("Comida: " + totalFood);
+
+            JOptionPane.showMessageDialog(null, "Vocês decidem atacar, porém perdem " + lifeLost + " de vida e " + foodLost + " de comida. Não foi a melhor opção. \n Pense melhor na próxima missão, " + playerName + "!");
+        } else {
+            int coinsEarned = 100;
+            int foodEarned = 10;
+
+            int currentCoins = Integer.parseInt(coinCounter.getText().split(": ")[1]);
+            int totalCoins = currentCoins + coinsEarned;
+            coinCounter.setText("Moedas: " + totalCoins);
+
+            int currentFood = Integer.parseInt(foodLabel.getText().split(": ")[1]);
+            int totalFood = currentFood + foodEarned;
+            foodLabel.setText("Comida: " + totalFood);
+
+            JOptionPane.showMessageDialog(null, "Vocês escolhem se infiltrar na expedição e conseguem roubar 70% do ouro e comida, você recebeu uma parte!");
+            JOptionPane.showMessageDialog(null, "Sarah Fortune: Por respeito a você ter me dado um báu cheio de outro");
+        }
+    }
+
+    public static void TEXTOS4(String playerName, JLabel coinCounter) {
+        Random rand = new Random(1);
+        JOptionPane.showMessageDialog(null, "Narrador: Depois de captura dos tesouros, a tripulação passa por um momento de conflito. \n Agora nas mãos da nossa capitã estavam uma quantidade estrondosa de tesouros e moedas de ouro.");
+        JOptionPane.showMessageDialog(null, "Narrador: Os tripulantes se revoltam pela repartição injusta dos tesouros. Todos trabalham e se esforçam pelo sucesso do navio e da capitã, sendo assim devem ser reconhecidos e pagos pela produtividade.");
+        JOptionPane.showMessageDialog(null, "Narrador: O vislumbre atacou a capitã, e a distribuição das recompensas entre os tripulantes não os agrada muito.");
+        JOptionPane.showMessageDialog(null, "Tripulante 1: Capitã, não acho que esteja sendo justa com a nossa recompensa!");
 
 
     }
