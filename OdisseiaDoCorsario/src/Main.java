@@ -23,7 +23,7 @@ public class Main {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                ImageIcon backgroundImage = new ImageIcon("C:\\Users\\edwar\\Downloads\\IMG_1347.PNG");
+                ImageIcon backgroundImage = new ImageIcon("c:\\Users\\edwar\\Downloads\\IMG_1347.PNG");
                 g.drawImage(backgroundImage.getImage(), 0, 0, getWidth(), getHeight(), this);
             }
         };
@@ -82,6 +82,7 @@ public class Main {
                 TEXTOS2(playerName, coinCounter);
                 TEXTOS3(playerName, coinCounter);
                 TEXTOS4(playerName, coinCounter);
+                TEXTOS5(playerName, coinCounter);
 
                 coins[0] = 50;
                 coinCounter.setText("Moedas: " + coins[0]);
@@ -180,7 +181,7 @@ public class Main {
             int totalFood = currentFood - foodLost;
             foodLabel.setText("Comida: " + totalFood);
 
-            JOptionPane.showMessageDialog(null, "Vocês decidem atacar, porém perdem " + lifeLost + " de vida e " + foodLost + " de comida. Não foi a melhor opção. \n Pense melhor na próxima missão, " + playerName + "!");
+            JOptionPane.showMessageDialog(null, "Vocês decidem atacar, porém perdem " + lifeLost + " de vida e " + foodLost + " de comida. Não foi a melhor opção. \n Pense melhor na próxima missão, quem sabe você ganha uma parte recompensa, " + playerName + "!");
         } else {
             int coinsEarned = 100;
             int foodEarned = 10;
@@ -200,13 +201,46 @@ public class Main {
 
     public static void TEXTOS4(String playerName, JLabel coinCounter) {
         Random rand = new Random(1);
-        JOptionPane.showMessageDialog(null, "Narrador: Depois de captura dos tesouros, a tripulação passa por um momento de conflito. \n Agora nas mãos da nossa capitã estavam uma quantidade estrondosa de tesouros e moedas de ouro.");
+        JOptionPane.showMessageDialog(null, "Narrador: Depois da captura dos tesouros, a tripulação passa por um momento de conflito. \n Agora nas mãos da nossa capitã estavam uma quantidade estrondosa de tesouros e moedas de ouro.");
         JOptionPane.showMessageDialog(null, "Narrador: Os tripulantes se revoltam pela repartição injusta dos tesouros. Todos trabalham e se esforçam pelo sucesso do navio e da capitã, sendo assim devem ser reconhecidos e pagos pela produtividade.");
         JOptionPane.showMessageDialog(null, "Narrador: O vislumbre atacou a capitã, e a distribuição das recompensas entre os tripulantes não os agrada muito.");
+        JOptionPane.showMessageDialog(null, "Narrador: Você percebe que hã um conflito com a administração classica, onde todos se esforçam pelo navio da capitã, sendo assim devem ser reconhecidos. no entanto, isso não tem acontecido direito...");
         JOptionPane.showMessageDialog(null, "Tripulante 1: Capitã, não acho que esteja sendo justa com a nossa recompensa!");
+        JOptionPane.showMessageDialog(null, "Sarah Fortune: Oh marujo, ao meu ver isto é mais que o suficiente para vocês. Se não fosse por mim, ao menos iriam saber a localização da coroa.");
+        JOptionPane.showMessageDialog(null, "Tripulante 2: Está sendo injusta, capitã! estamos com você a anos, esta mudada, não costumava ser tão mesquinha desta forma!");
+        JOptionPane.showMessageDialog(null, "Sarah Fortune: Eu sou a ponta deste navio. EU quem mando aqui, e vocês não seriam nada sem mim! Se contentem com o que tem, se não os faço andar na prancha!");
+        JOptionPane.showMessageDialog(null, "Narrador: Você reconhece a mesma atitude de Barba Negra nos olhos da capitã, temia que aquele navio virasse novamente a mesma prisão de que havia saido. \n Sendo assim, você decide fazer algo por você e pelos outros tripulantes do navio...");
+
+        int escolha = JOptionPane.showOptionDialog(null, "Como você prefere resolver essa situação?", "Escolha sua ação: ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"Conversar com a capitã de forma pacífica", "Gritar com a capitã na frente de todos"}, null);
+        if (escolha == JOptionPane.YES_OPTION) {
+            JOptionPane.showMessageDialog(null, "Você decide conversar com a capitã de forma pacífica.");
+            JOptionPane.showMessageDialog(null, playerName + ": Escuta, capitã... Nós somos seus companheiros, eles não querem te arruinar, estão todos do seu lado. os remunere como deve, pois você sabe que merecem.");
+            JOptionPane.showMessageDialog(null, "Sarah Fortune: Quem você pensa que é " + playerName + "? Eu sei bem o que merecem. não sei se devo te lembrar mas eu sou a capitã do navio!");
+            JOptionPane.showMessageDialog(null, playerName + ": Sabe que eles acabariam com você, não sabe? só não fazem isso porque são como cães fieis a você. entregue a eles o que pediram a você!");
+            JOptionPane.showMessageDialog(null, "Narrador: Sarah te ouviu e distribuiu mais 300 moedas entre os tripulantes incluindo você.");
 
 
+            int currentCoins = Integer.parseInt(coinCounter.getText().split(": ")[1]);
+            int totalCoins = currentCoins + 300;
+            coinCounter.setText("Moedas: " + totalCoins);
+        } else {
+            JOptionPane.showMessageDialog(null, "Você decide gritar com a capitã na frente de todos!");
+            JOptionPane.showMessageDialog(null, playerName + ": PAGUE LOGO O QUE NOS DEVE CAPITÃ, NÃO ESTAMOS AQUI PARA FAZER FAVOR!");
+            JOptionPane.showMessageDialog(null, "Tripulante 1: Nos arriscamos por todos capitã! perdemos alguns homens! apenas queremos nosso dinheiro, se não a coisa vai ficar seria!");
+            JOptionPane.showMessageDialog(null, "Narrador: Os tripulantes começam a gritar em uníssono, cobrando a capitã.");
+            JOptionPane.showMessageDialog(null, "Sarah Fortune: Tudo bem! Tudo bem! Parem com essa gritaria, seus animais! darei moedas a mais para vocês, mas parem com essa algazarra que aqui não é circo!");
+            JOptionPane.showMessageDialog(null, "Narrador: Sarah te ouviu e distribuiu mais 300 moedas entre os tripulantes incluindo você, mas ela não ficou nem um pouco contente com suas atitudes... \n você deixou de ser o queridinho da capitã...");
+
+
+            int currentCoins = Integer.parseInt(coinCounter.getText().split(": ")[1]);
+            int totalCoins = currentCoins + 300;
+            coinCounter.setText("Moedas: " + totalCoins);
+        }
     }
 
+    public static void TEXTOS5(String playername, JLabel coinCounter) {
+        JOptionPane.showMessageDialog(null, "");
+
+    }
 
 }
