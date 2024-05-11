@@ -23,7 +23,7 @@ public class Main {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                ImageIcon backgroundImage = new ImageIcon("c:\\Users\\edwar\\Downloads\\IMG_1347.PNG");
+                ImageIcon backgroundImage = new ImageIcon("C:\\Users\\mayara.lturbiani\\Documents\\Grupo-1---Turma-A\\imagem menu\\IMG_1347.PNG");
                 g.drawImage(backgroundImage.getImage(), 0, 0, getWidth(), getHeight(), this);
             }
         };
@@ -83,6 +83,7 @@ public class Main {
                 TEXTOS3(playerName, coinCounter);
                 TEXTOS4(playerName, coinCounter);
                 TEXTOS5(playerName, coinCounter);
+                TEXTOS7(playerName, coinCounter);
 
                 coins[0] = 50;
                 coinCounter.setText("Moedas: " + coins[0]);
@@ -243,4 +244,28 @@ public class Main {
 
     }
 
+    public static void TEXTOS7(String playerName, JLabel coinCounter) {
+        Random rand = new Random(1);
+        JOptionPane.showMessageDialog(null, "Narrador: A tensão atinge o navio Pérola Negra. A missão culmina em um ponto crucial, onde você determina o comando do navio, moldando assim o curso da odisseia do corsário.");
+
+        int escolha = JOptionPane.showOptionDialog(null, "Como você prefere resolver essa situação?", "Escolha sua ação: ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"Confrontar diretamente a capitã Sarah Fortune\n", "Optar por uma abordagem mais pacífica"}, null);
+        if (escolha == JOptionPane.YES_OPTION){
+            JOptionPane.showMessageDialog(null, "Você decide confrontar diretamente a capitã");
+            JOptionPane.showMessageDialog(null, playerName + ": Capitã Sarah, chegou o momento de acertarmos nossas contas. Você traiu a confiança da tripulação e tentou me eliminar. Não posso permitir que continue no comando deste navio.");
+            JOptionPane.showMessageDialog(null, "Sarah Fortune: Você ousa desafiar minha autoridade? Sou a capitã desse navio e não permitirei que um insolente como você me subjugue!");
+            JOptionPane.showMessageDialog(null, playerName + ": Suas palavras não mudarão a situação. Seu reinado termina aqui. Prepare-se para enfrentar as consequências de suas ações.");
+            JOptionPane.showMessageDialog(null, "Narrador: Determinado a não ceder às manipulações da capitã, o jogador enfrenta Sarah Fortune em um duelo mortal.\n Com habilidade e determinação, o jogador emerge vitorioso, assumindo o comando do navio Pérola Negra como o novo capitão.");
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Você opta por uma abordagem mais pacífica.");
+            JOptionPane.showMessageDialog(null, playerName + "Capitã Sarah, suas ações prejudicaram a todos nós. É hora de partir, seus dias como líder deste navio acabaram.\n Não desejo derramar sangue, mas não permitirei que continue a semear discórdia entre nós.");
+            JOptionPane.showMessageDialog(null, "Sarah Fortune: Você pensa que pode me expulsar? Eu sou a capitã desse navio, e vocês todos me devem lealdade!");
+            JOptionPane.showMessageDialog(null, playerName + ": Ninguém é dono da lealdade de ninguém. Você abusou de sua posição e agora está colhendo as consequências. Parta agora, e não farei nada para impedi-la.");
+            JOptionPane.showMessageDialog(null, "Narrador: Com relutância, a capitã Sarah Fortune parte do navio Pérola Negra, deixando para trás sua antiga posição de poder.\n Você assume o comando, guiando a tripulação em direção a um novo futuro, baseado na cooperação e no respeito mútuo.");
+        }
+    }
+
+    public static void TEXTOS8(String playerName, JLabel coinCounter) {
+        JOptionPane.showMessageDialog(null, "");
+    }
 }
