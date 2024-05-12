@@ -111,6 +111,7 @@ public class Main {
                 TEXTOS3(playerName, coinCounter);
                 TEXTOS4(playerName, coinCounter);
                 TEXTOS5(playerName, coinCounter);
+                TEXTOS6(playerName, coinCounter);
                 TEXTOS7(playerName, coinCounter);
 
                 coins[0] = 50;
@@ -197,7 +198,7 @@ public class Main {
         JOptionPane.showMessageDialog(null, playerName + ": Eu tenho uma ideia, sei que sou novo ainda, mas tenho experiencia em batalha, posso dizer com confiança que eu poderei os ajudar com isso. \n Minha tripulação será conhecida por afundar a terrivel coroa britanica no fundo do mar! ");
         JOptionPane.showMessageDialog(null, "Narrador: O destino dessa missão está novamente em suas mãos \n você agora deve usar seu modo tático, pense em em como atacar, analise bem antes da implementação da estrategia!");
 
-        int escolha = JOptionPane.showOptionDialog(null, "Como você irá resolver essa situação?", "Escolha sua ação: ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"Deveremos atacar. \n Pois a coroa britanica está com bens que não os peretencem", "Deveremos seguir no modo furtivo. \n Sendo mais racional e priorizar a captura do que foi ampreendido."}, null);
+        int escolha = JOptionPane.showOptionDialog(null, "Como você irá resolver essa situação?", "Escolha sua ação: ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"Deveremos atacar, a coroa britanica está com bens que não os peretencem", "Deveremos seguir no modo furtivo, priorizando a captura do que foi ampreendido."}, null);
         if (escolha == JOptionPane.YES_OPTION) {
             int lifeLost = 30;
             int foodLost = 10;
@@ -297,29 +298,44 @@ public class Main {
         }
     }
 
+    public static void TEXTOS6(String playernName, JLabel coinCounter) {
+        JOptionPane.showMessageDialog(null, "Narrador: Com a situação se deteriorando entre a tripulação e a capitã Sarah Fortune, os ânimos estão acirrados a bordo do navio Pérola Negra. \n Enquanto isso, rumores de traição circulam pelos corredores do navio,\n alimentando uma atmosfera de desconfiança e conspiração.");
+
+        int escolha = JOptionPane.showOptionDialog(null, "Como você irá resolver essa situação?", "Escolha sua ação: ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"Confrontar a capitã Sarah Fortune, com uma abordagem direta e confrontativa", "Optar pelo plano mais sutil, com uma estratégia calculada e diplomática"}, null);
+        if (escolha == JOptionPane.YES_OPTION) {
+            JOptionPane.showMessageDialog(null, playernName +": Capitã, precisamos conversar a sós. Descobri que há um plano para me colocar na prancha. \nSei que as coisas não estão bem entre nós, mas traição não é o caminho.");
+            JOptionPane.showMessageDialog(null, "Sarah Fortune: O quê? Como ousa espalhar essas mentiras? \nNão temos tempo para suas conspirações, estamos em alto mar!");
+            JOptionPane.showMessageDialog(null, playernName+": Não são mentiras, capitã. Sei que algo mudou entre nós, mas isso não justifica tentar me iliminar. \n A tripulação está descontente, e se unir contra voçê não é o que desejo, \nmas é o que pode acontecer se não resolvemos isso agora.");
+            JOptionPane.showMessageDialog(null, "Sarah Fortune: Você está fora de si, "+ playernName+". Mas seja como for, não vou permitir que interfira em meus planos!");
+            JOptionPane.showMessageDialog(null, "Narrador: A tensão atinge seu ápice enquanto o você confronta diretamente a capitã, desafiando sua autoridade \ne expondo os planos de traição. A abordagem da capitã reflete os princípios da administração clássica, onde a liderança é exercida \nde maneira autoritária e centralizada, sem considerar as opiniões ou preocupações dos subordinados. Enquanto isso, os canhões do navio são posicionados estrategicamente e os \ntripulantes recebem instruções para reforçar as barricadas, preparando-se para qualquer eventual confronto.");
+        } else {
+            JOptionPane.showMessageDialog(null, playernName +": Tripulantes, reuni vocês aqui hoje para apresentar algo crucial. Tenho evidências de que a capitã está planejando me colocar na prancha. \nSei que as coisas não estão bem, mas traição não é a resposta.");
+            JOptionPane.showMessageDialog(null, "Tripulante 1: Evidências? Do que está falando?");
+            JOptionPane.showMessageDialog(null, playernName +": Tenho testemunhos de outros membros da tripulação. Não podemos deixar que a capitã nos dívida, precisamos nos unir para proteger o navio e nossos interesses.");
+            JOptionPane.showMessageDialog(null, "Tripulante 2: Se isso for verdade...");
+            JOptionPane.showMessageDialog(null, playernName +": A verdade está diante de nós, amigos. Precisamos agir com cautela, mas com determinação. Juntos, podemos mudar o rumo desta situação.");
+            JOptionPane.showMessageDialog(null, "Narrador: Ao apresentar as evidências aos tripulantes, o jogador consegue semear dúvidas sobre a capitã e conquistar o apoio da maioria da tripulação. \n Enquanto isso, armadilhas são preparadas em pontos estratégicos do navio, garantindo a defesa contra qualquer tentativa de retaliação por parte da capitã.");
+        }
+    }
 
     public static void TEXTOS7(String playerName, JLabel coinCounter) {
         Random rand = new Random(1);
-        JOptionPane.showMessageDialog(null, "Narrador: A tensão atinge o navio Pérola Negra. A missão culmina em um ponto crucial, onde você determina o comando do navio, moldando assim o curso da odisseia do corsário.");
+        JOptionPane.showMessageDialog(null, "Narrador: A tensão atinge o navio Pérola Negra. A missão culmina em um ponto crucial, \nonde você determina o comando do navio, moldando assim o curso da odisseia do corsário.");
 
         int escolha = JOptionPane.showOptionDialog(null, "Como você prefere resolver essa situação?", "Escolha sua ação: ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"Confrontar diretamente a capitã Sarah Fortune\n", "Optar por uma abordagem mais pacífica"}, null);
         if (escolha == JOptionPane.YES_OPTION){
             JOptionPane.showMessageDialog(null, "Você decide confrontar diretamente a capitã");
-            JOptionPane.showMessageDialog(null, playerName + ": Capitã Sarah, chegou o momento de acertarmos nossas contas. Você traiu a confiança da tripulação e tentou me eliminar. Não posso permitir que continue no comando deste navio.");
+            JOptionPane.showMessageDialog(null, playerName + ": Capitã Sarah, chegou o momento de acertarmos nossas contas. Você traiu a confiança da tripulação \ne tentou me eliminar. Não posso permitir que continue no comando deste navio.");
             JOptionPane.showMessageDialog(null, "Sarah Fortune: Você ousa desafiar minha autoridade? Sou a capitã desse navio e não permitirei que um insolente como você me subjugue!");
             JOptionPane.showMessageDialog(null, playerName + ": Suas palavras não mudarão a situação. Seu reinado termina aqui. Prepare-se para enfrentar as consequências de suas ações.");
-            JOptionPane.showMessageDialog(null, "Narrador: Determinado a não ceder às manipulações da capitã, o jogador enfrenta Sarah Fortune em um duelo mortal.\n Com habilidade e determinação, o jogador emerge vitorioso, assumindo o comando do navio Pérola Negra como o novo capitão.");
+            JOptionPane.showMessageDialog(null, "Narrador: Determinado a não ceder às manipulações da capitã, " + playerName + " enfrenta Sarah Fortune em um duelo mortal.\n Com habilidade e determinação, o jogador emerge vitorioso, assumindo o comando do navio Pérola Negra como o novo capitão.");
         }
         else {
             JOptionPane.showMessageDialog(null, "Você opta por uma abordagem mais pacífica.");
             JOptionPane.showMessageDialog(null, playerName + "Capitã Sarah, suas ações prejudicaram a todos nós. É hora de partir, seus dias como líder deste navio acabaram.\n Não desejo derramar sangue, mas não permitirei que continue a semear discórdia entre nós.");
             JOptionPane.showMessageDialog(null, "Sarah Fortune: Você pensa que pode me expulsar? Eu sou a capitã desse navio, e vocês todos me devem lealdade!");
             JOptionPane.showMessageDialog(null, playerName + ": Ninguém é dono da lealdade de ninguém. Você abusou de sua posição e agora está colhendo as consequências. Parta agora, e não farei nada para impedi-la.");
-            JOptionPane.showMessageDialog(null, "Narrador: Com relutância, a capitã Sarah Fortune parte do navio Pérola Negra, deixando para trás sua antiga posição de poder.\n Você assume o comando, guiando a tripulação em direção a um novo futuro, baseado na cooperação e no respeito mútuo.");
+            JOptionPane.showMessageDialog(null, "Narrador: Com relutância, a capitã Sarah Fortune parte do navio Pérola Negra, deixando para trás sua antiga posição de poder.\n e " + playerName + " assume o comando, guiando a tripulação em direção a um novo futuro, baseado na cooperação e no respeito mútuo.");
         }
-    }
-
-    public static void TEXTOS8(String playerName, JLabel coinCounter) {
-        JOptionPane.showMessageDialog(null, "");
     }
 }
