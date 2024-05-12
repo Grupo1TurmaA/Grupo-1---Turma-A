@@ -267,10 +267,36 @@ public class Main {
         }
     }
 
-    public static void TEXTOS5(String playername, JLabel coinCounter) {
-        JOptionPane.showMessageDialog(null, "");
+    public static void TEXTOS5(String playerName, JLabel coinCounter) {
+        JOptionPane.showMessageDialog(null, "Narrador: Parabens marujo, você conseguiu usar o mecanismo de defesa da racionalização, adquirindo os recursos necessários para o sustento da tripulação e o enriquecimento da capitã.");
+        JOptionPane.showMessageDialog(null, "Narrador: Depois de alguns dias em alto mar, você se deparam com um polvo gigante tentando atacar o navio.");
+        JOptionPane.showMessageDialog(null, "Narrador: Sarah corre e se esconde dentro do convés, deixando os tripulantes confusos e soltos sem direção.");
+        JOptionPane.showMessageDialog(null, "Narrador: Diante da ameaça iminente do monstro marinho, você precisa tomar uma decisão estratégica para proteger o navio e sua tripulação, enquanto lida com suas próprias emoções e as dos demais tripulantes. \n Utilizando a sublimação, um mecanismo de defesa segundo os fundamentos da psicologia, você canaliza suas emoções negativas, como ansiedade e medo, para a ação produtiva e construtiva");
+        JOptionPane.showMessageDialog(null, "Isso significa que, ao invés de sucumbir ao pânico, ele transforma essas emoções em energia motivadora para liderar a tripulação em uma batalha intensa contra o polvo gigante. \n Essa capacidade de sublimar as emoções permite ao jogador agir com determinação e coragem, mesmo diante de circunstâncias adversas, garantindo a segurança do navio e de seus companheiros.");
+        int escolha = JOptionPane.showOptionDialog(null, "Como você prefere resolver essa situação?", "Escolha sua ação: ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"Assumir a liderança do navio e guiar todos os tripulantes contra o monstro, usando os canhões.", "Você assume a liderança do navio e decide aplicar todas as armadilhas do navio com ajuda dos tripulantes."}, null);
 
+        if (escolha == JOptionPane.YES_NO_OPTION) {
+
+            JOptionPane.showMessageDialog(null, "Você decidiu assumir a liderança e atacar com os canhões junto da tripulação. \n Aplicando uma estratégia de defesa agressiva enquanto canaliza sua ansiedade e medo para a ação combativa.");
+            JOptionPane.showMessageDialog(null,  playerName + ": Companheiros, fiquem atentos, todos se coloquem proximos aos canhões! ao meu comando atiraremos contra a fera!");
+            JOptionPane.showMessageDialog(null, "Tripulantes: Ahoy companheiro!");
+            JOptionPane.showMessageDialog(null, "Narrador: Após uma batalha assídua contra a fera do mar, você e os tripulantes conseguem deter a fera marinha; \n O navio sofreu alguns danos, mas podera ser consertado graças ao tesouro da coroa britanica.");
+        } else {
+            JOptionPane.showMessageDialog(null, "Você escolheu plantar armadilhas. implementando uma estratégia defensiva baseada na preparação e na utilização eficiente dos recursos disponíveis, ao mesmo tempo em que busca controlar suas emoções e as dos tripulantes, canalizando-as para a coordenação eficaz das ações.");
+            JOptionPane.showMessageDialog(null,  playerName + ": Companheiros, fiquem atentos! Peguem todas as armadilhas do convès. ao meu comando atacaremos a fera! ");
+            JOptionPane.showMessageDialog(null, "Tripulantes: Ahoy companheiro!");
+            JOptionPane.showMessageDialog(null, "Narrador: Após uma batalha assuida contra a fera do mar, você e os tripulantes conseguem deter a fera marinha. \n No entanto você e boa parte da tripulação saiu machucada. O navio sofreu muitos danos, mas tudo bem, foi seu primeiro ato de liderança.");
+            JOptionPane.showMessageDialog(null, "Você perdeu 40 de vida!!!");
+            int lifeLost = 30;
+
+            int currentLife = Integer.parseInt(lifeLabel.getText().split(": ")[1]);
+
+            int totalLife = currentLife - lifeLost;
+
+            lifeLabel.setText("Vida: " + totalLife);
+        }
     }
+
 
     public static void TEXTOS7(String playerName, JLabel coinCounter) {
         Random rand = new Random(1);
