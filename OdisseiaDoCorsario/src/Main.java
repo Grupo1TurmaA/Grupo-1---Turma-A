@@ -23,17 +23,32 @@ public class Main {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                ImageIcon backgroundImage = new ImageIcon("C:\\Users\\mayara.lturbiani\\Documents\\Grupo-1---Turma-A\\imagem menu\\IMG_1347.PNG");
+                ImageIcon backgroundImage = new ImageIcon("C:\\Users\\mayar\\Documents\\Grupo-1---Turma-A\\imagem menu\\IMG_1347.PNG");
                 g.drawImage(backgroundImage.getImage(), 0, 0, getWidth(), getHeight(), this);
             }
         };
         panel.setLayout(null);
         frame.add(panel);
 
-        JButton startButton = new JButton("Start");
+        JButton instructionsButton = new JButton("Instruções");
+        instructionsButton.setBackground(Color.gray);
+        instructionsButton.setBounds(100, 400, 100, 30);
+        panel.add(instructionsButton);
+
+        JButton startButton = new JButton("Jogar");
         startButton.setBackground(Color.gray);
         startButton.setBounds(250, 400, 100, 30);
         panel.add(startButton);
+
+        JButton closeButton = new JButton("Sair");
+        closeButton.setBackground(Color.gray);
+        closeButton.setBounds(400, 400, 100, 30);
+        panel.add(closeButton);
+
+        JButton creditsButton = new JButton("Créditos");
+        creditsButton.setBackground(Color.gray);
+        creditsButton.setBounds(470, 10, 100, 30);
+        panel.add(creditsButton);
 
         playerNameField = new JTextField();
         playerNameField.setBounds(200, 350, 200, 30);
@@ -55,6 +70,19 @@ public class Main {
         panel.add(lifeLabel);
 
         playerNames = new ArrayList<>();
+
+        closeButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int escolha = JOptionPane.showOptionDialog(null, "Tem certeza que deseja sair?", "Sair", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"Sim\n", "Não"}, null);
+                switch(escolha) {
+                    case JOptionPane.YES_OPTION:
+                        frame.dispose();
+                        break;
+                    case JOptionPane.NO_OPTION:
+                        break;
+                }
+            }
+        });
 
         startButton.addActionListener(new ActionListener() {
             final int[] coins = {0};
@@ -166,7 +194,7 @@ public class Main {
         JOptionPane.showMessageDialog(null, "Narrador: Sarah Fortune aceita a missão em Tortuga. Você junto com o resto da tripulação e com a capitã, se preparam pensando em um plano para atacar os britanicos. ");
         JOptionPane.showMessageDialog(null, "Sarah Fortune: Ok homens, e uquero todos em meu convés! Barbosa, me empreste todos os seus homens. \n Vamos expulsar esses carapaças daqui!");
         JOptionPane.showMessageDialog(null, "Barbosa: Ficou louca? não deixarei meus homens morrerem pela sua investida burra e precipitada de lutar frente a frente com os britanicos! \n Está vendo a sua direita? tem umas rochas cobrindo a visão deles. Vamos encurála-los pelas costas e trucidá-llos!");
-        JOptionPane.showMessageDialog(null,  playerName + ": Eu tenho uma ideia, sei que sou novo ainda, mas tenho experiencia em batalha, posso dizer com confiança que eu poderei os ajudar com isso. \n Minha tripulação será conhecida por afundar a terrivel coroa britanica no fundo do mar! ");
+        JOptionPane.showMessageDialog(null, playerName + ": Eu tenho uma ideia, sei que sou novo ainda, mas tenho experiencia em batalha, posso dizer com confiança que eu poderei os ajudar com isso. \n Minha tripulação será conhecida por afundar a terrivel coroa britanica no fundo do mar! ");
         JOptionPane.showMessageDialog(null, "Narrador: O destino dessa missão está novamente em suas mãos \n você agora deve usar seu modo tático, pense em em como atacar, analise bem antes da implementação da estrategia!");
 
         int escolha = JOptionPane.showOptionDialog(null, "Como você irá resolver essa situação?", "Escolha sua ação: ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"Deveremos atacar. \n Pois a coroa britanica está com bens que não os peretencem", "Deveremos seguir no modo furtivo. \n Sendo mais racional e priorizar a captura do que foi ampreendido."}, null);
