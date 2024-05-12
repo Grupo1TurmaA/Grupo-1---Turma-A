@@ -4,6 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Random;
+import java.io.IOException;
+import javax.sound.sampled.*;
+import java.io.File;
 
 public class Main {
     static JTextField playerNameField;
@@ -23,7 +26,7 @@ public class Main {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                ImageIcon backgroundImage = new ImageIcon("C:\\Users\\mayar\\Documents\\Grupo-1---Turma-A\\imagem menu\\IMG_1347.PNG");
+                ImageIcon backgroundImage = new ImageIcon("C:\\Users\\mayar\\Documents\\Grupo-1---Turma-A\\itens menu\\IMG_1347.PNG");
                 g.drawImage(backgroundImage.getImage(), 0, 0, getWidth(), getHeight(), this);
             }
         };
@@ -120,8 +123,22 @@ public class Main {
                 foodLabel.setText("Comida: " + food[0]);
             }
         });
+
+        playSound("C:\\Users\\mayar\\Documents\\Grupo-1---Turma-A\\itens menu\\Pirates of the Caribbean (Auckland Symphony Orchestra) 1080p.wav");
         frame.setVisible(true);
-        int percavida;
+    }
+
+    public static void playSound(String filePath) {
+        try {
+            File audioFile = new File(filePath);
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
+
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioStream);
+            clip.start();
+        } catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void TEXTOS(String playerName, JLabel coinCounter, JLabel foodLabel) {
