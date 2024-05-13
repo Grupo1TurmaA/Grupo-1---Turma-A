@@ -74,6 +74,20 @@ public class Main {
 
         playerNames = new ArrayList<>();
 
+        creditsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Desenvolvido por: \nEdward Leal Borges, \nGabriel Rodrigues dos Santos, \nYasmin Oliveira Soares, \nIsabela Miranda Pereira, \nMayara Lupeti Turbiani \n\nRoteirizado por: \nIsabela Miranda Pereira, \nEdward Leal Borges, \nYasmin Oliveira Soares");
+            }
+        });
+
+        instructionsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Esse é um jogo de RPG, ou em inglês Role-Playing Game, nessa modalidade os jogadores assumem papéis fictícios e interagem em um mundo imaginário. \nEm As Velas do Destino: A Odisséia do Corsário, você assume o papel de um marujo que foi exilado por seu capitão e tripulantes antigos, um oportunidade surje para \nembarcar numa aventura com uma capitã famosa e ambisiosa, \nem um novo navio e com uma tripulação VOCÊ decide o seu destino!\n\n Nesse jogo suas escolhas IMPORTAM, você inicia essa jornada com 100 de vida e comida e 0 moedas! Pense antes de tomar cada decisão durante as missões,\n pois dependendo do caminho escolhido você pode ganhar ou perder moedas, comida e vida.");
+            }
+        });
+
         closeButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int escolha = JOptionPane.showOptionDialog(null, "Tem certeza que deseja sair?", "Sair", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"Sim\n", "Não"}, null);
