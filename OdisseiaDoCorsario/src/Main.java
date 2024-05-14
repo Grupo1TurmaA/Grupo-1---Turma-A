@@ -77,20 +77,26 @@ public class Main {
         creditsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Desenvolvido por: \nEdward Leal Borges, \nGabriel Rodrigues dos Santos, \nYasmin Oliveira Soares, \nIsabela Miranda Pereira, \nMayara Lupeti Turbiani \n\nRoteirizado por: \nIsabela Miranda Pereira, \nEdward Leal Borges, \nYasmin Oliveira Soares");
+                JOptionPane.showMessageDialog(null, "Desenvolvido por: \nEdward Leal Borges, \nGabriel Rodrigues dos Santos, \nYasmim Oliveira Soares, \nIsabela Miranda Pereira, \nMayara Lupeti Turbiani \n\nRoteirizado por: \nIsabela Miranda Pereira, \nEdward Leal Borges, \nYasmin Oliveira Soares");
             }
         });
 
         instructionsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Esse é um jogo de RPG, ou em inglês Role-Playing Game, nessa modalidade os jogadores assumem papéis fictícios e interagem em um mundo imaginário. \nEm As Velas do Destino: A Odisséia do Corsário, você assume o papel de um marujo que foi exilado por seu capitão e tripulantes antigos, um oportunidade surje para \nembarcar numa aventura com uma capitã famosa e ambisiosa, \nem um novo navio e com uma tripulação VOCÊ decide o seu destino!\n\n Nesse jogo suas escolhas IMPORTAM, você inicia essa jornada com 100 de vida e comida e 0 moedas! Pense antes de tomar cada decisão durante as missões,\n pois dependendo do caminho escolhido você pode ganhar ou perder moedas, comida e vida.");
+                JOptionPane.showMessageDialog(null, "Esse é um jogo de RPG, ou em inglês Role-Playing Game, nessa modalidade os jogadores assumem papéis fictícios e interagem em um mundo imaginário. "
+                                                                            + "\nEm As Velas do Destino: A Odisséia do Corsário, você assume o papel de um marujo que foi exilado por seu capitão e tripulantes antigos, "
+                                                                            + "\numa oportunidade surje para embarcar numa aventura com uma capitã famosa e ambisiosa, \nem um novo navio e com "
+                                                                            + "\numa tripulação VOCÊ decide o seu destino!"
+                                                                            + "\n\n\nNesse jogo suas escolhas IMPORTAM, você inicia essa jornada com 100 de vida e comida e 0 moedas! Pense antes de tomar cada decisão durante "
+                                                                            + "\nas missões, pois dependendo do caminho escolhido você pode ganhar ou perder moedas, comida e vida.");
             }
         });
 
         closeButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                int escolha = JOptionPane.showOptionDialog(null, "Tem certeza que deseja sair?", "Sair", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"Sim\n", "Não"}, null);
+                int escolha = JOptionPane.showOptionDialog(null, "Tem certeza que deseja sair?", "Sair",
+                        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"Sim\n", "Não"}, null);
                 switch(escolha) {
                     case JOptionPane.YES_OPTION:
                         frame.dispose();
@@ -236,8 +242,6 @@ public class Main {
         JOptionPane.showMessageDialog(null, "Sarah Fortune: Negócios é? E de que tipo...?");
         JOptionPane.showMessageDialog(null, "Barbosa: Grandes negócios minha cara Sarah Fortune... muito tesouro, rum, joias e "
                                                                     + "\nespeciarias confiscadas pela coroa real...");
-        JOptionPane.showMessageDialog(null, "Sarah Fortune: Vocês homens só pensam em rum e mulheres! Isso não me interessa, quero "
-                                                                    + "\nsaber o quanto de dinheiro vamos ganhar nessa brincadeira!");
         JOptionPane.showMessageDialog(null, "Barbosa: Muito mais do que você já ganhou ou imaginou ter, e então? Está de acordo? "
                                                                     + "\nPodemos nos unir, eu te garanto que a nossa tripulação vai adorar a ideia!!");
         JOptionPane.showMessageDialog(null, "Sarah Fortune: Mas é óbvio, se envolve dinheiro é claro que vou aceitar, "
@@ -255,7 +259,8 @@ public class Main {
         JOptionPane.showMessageDialog(null, "Narrador: O destino dessa missão está novamente em suas mãos você agora deve usar seu modo tático, "
                                                                     + "\npense em em como atacar, analise bem antes da implementação da estrategia!");
 
-        int escolha = JOptionPane.showOptionDialog(null, "Como você irá resolver essa situação?", "Escolha sua ação: ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"Atacar, a coroa britanica está com bens que não os peretencem", "Seguir no modo furtivo, priorizando a captura do que foi ampreendido."}, null);
+        int escolha = JOptionPane.showOptionDialog(null, "Como você irá resolver essa situação?", "Escolha sua ação: ",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"Atacar, a coroa britanica está com bens que não os peretencem", "Seguir no modo furtivo, priorizando a captura do que foi apreendido."}, null);
         if (escolha == JOptionPane.YES_OPTION) {
             int lifeLost = 30;
             int foodLost = 10;
@@ -297,8 +302,8 @@ public class Main {
                                                                     + "\npagos pela produtividade.");
         JOptionPane.showMessageDialog(null, "Narrador: O vislumbre atacou a capitã, e a distribuição das recompensas entre os tripulantes "
                                                                     + "\nnão os agrada muito.");
-        JOptionPane.showMessageDialog(null, "Narrador: Você percebe que hã um conflito com a administração classica, onde todos se esforçam pelo "
-                                                                    + "\nnavio da capitã, sendo assim devem ser reconhecidos. no entanto, "
+        JOptionPane.showMessageDialog(null, "Narrador: Você percebe que há um conflito com a administração classica, onde todos se esforçam pelo "
+                                                                    + "\nnavio da capitã, sendo assim devem ser reconhecidos. No entanto, "
                                                                     + "\nisso não tem acontecido direito...");
         JOptionPane.showMessageDialog(null, "Tripulante 1: Capitã, não acho que esteja sendo justa com a nossa recompensa!");
         JOptionPane.showMessageDialog(null, "Sarah Fortune: Oh marujo, ao meu ver isto é mais que o suficiente para vocês. Se não fosse por mim, "
