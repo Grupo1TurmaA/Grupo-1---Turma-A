@@ -469,4 +469,42 @@ public class Main {
                                                                         + "\nprodutividade do navio.");
         }
     }
+
+    public static void TEXTOS8(String playerName, JLabel coinCounter){
+        Random rand = new Random(1);
+        JOptionPane.showMessageDialog(null, "Após superar inúmeras adversidades e desafios, o navio Pérola Negra navega em águas tranquilas, refletindo "
+                                                                    + "\nsobre as lições aprendidas ao longo da jornada. O destino final está à vista, e o jogador, agora capitão "
+                                                                    + "\ndo navio, prepara-se para o último trecho da viagem.");
+        int escolha = JOptionPane.showOptionDialog(null, "Qual vai ser seu estilo de comando como capitão(ã)?", "Escolha sua ação: ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"Conduzir com liderança humanísta", "Continuar com comando autoritário"}, null);
+        if(escolha == JOptionPane.YES_OPTION) {
+            JOptionPane.showMessageDialog(null, "Você escolheu conduzir a tripulação de forma humanísta! Promovendo o bem-estar e a colaboraçãoentre todos a bordo, "
+                                                                        + "buscando o desenvolvimento pessoal e a valorização de cada membro da tripulação.");
+            JOptionPane.showMessageDialog(null, playerName + ": Tripulação, chegamos ao momento final desta jornada. Quero expressar minha gratidão por cada um de vocês e "
+                                                                        + "\npelo esforço que dedicaram a esta viagem. Juntos, superamos desafios que pareciam insuperáveis, e é isso "
+                                                                        + "\nque nos torna uma equipe forte e unida.");
+            JOptionPane.showMessageDialog(null, "Tripulantes: Capitão, estamos prontos para seguir suas ordens. Obrigado por nos liderar com respeito e compaixão.");
+            JOptionPane.showMessageDialog(null, playerName+ ": Cada um de vocês tem um papel importante nesta jornada, e é meu dever garantir que todos se sintam "
+                                                                        + "\nvalorizados e ouvidos. Vamos continuar navegando com coragem e determinação, mantendo sempre em mente os "
+                                                                        + "\nvalores que nos guiaram até aqui.");
+            JOptionPane.showMessageDialog(null, "Narrador: Sob a liderança do jogador, o navio Pérola Negra segue adiante, fortalecido pela união e cooperação "
+                                                                        + "\nde sua tripulação. Cada membro é valorizado e respeitado, criando um ambiente de trabalho onde todos se "
+                                                                        + "\nsentem motivados e engajados em alcançar os objetivos comuns. Os tripulantes trabalham em harmonia, "
+                                                                        + "\ncompartilhando ideias e contribuindo para o sucesso coletivo.");
+        } else {
+            JOptionPane.showMessageDialog(null, "Você decidiu seguir com uma abordagem autoritária! Impondo sua vontade sobre a tripulação e priorizando seus "
+                                                                        + "próprios interesses, desconsiderando o aspecto humano e as necessidades indiviuais dos tripulantes.");
+            JOptionPane.showMessageDialog(null, playerName + ": Tripulação, escutem-me bem. Chegamos ao final desta jornada, e quero que cada um de vocês se "
+                                                                        + "\nlembre de quem é o verdadeiro líder aqui. Minhas ordens devem ser seguidas sem questionamento, "
+                                                                        + "\ne qualquer desvio será punido com severidade.");
+            JOptionPane.showMessageDialog(null, "Tripulantes: (sussurros e murmúrios de descontentamento)...");
+            JOptionPane.showMessageDialog(null, playerName + ": Silêncio! Aqueles que desejam desfrutar dos tesouros desta viagem devem obedecer às minhas regras. "
+                                                                        + "\nNão tolerarei deslealdade ou insubordinaçã!.");
+            JOptionPane.showMessageDialog(null, "Narrador: Sob a liderança autoritária do jogador, o navio Pérola Negra avança em direção ao seu destino final. "
+                                                                        + "\nA atmosfera a bordo é tensa e hostil, com a tripulação desmotivada e desunida. O medo e a desconfiança "
+                                                                        + "\npermeiam o ar, minando qualquer esperança de um futuro próspero. Os tripulantes trabalham com receio "
+                                                                        + "\nde represálias, sem espaço para expressar suas opiniões ou contribuir com suas ideias.");
+        }
+        JOptionPane.showMessageDialog(null, "Narrador: A jornada do Pérola Negra chega ao fim, deixando para trás um legado de aprendizado, crescimento e, "
+                                                                    + "\nacima de tudo, importância das relações humanas na busca por um objetivo em comum!");
+    }
 }
