@@ -109,7 +109,7 @@ public class Main {
 
         startButton.addActionListener(new ActionListener() {
             final int[] coins = {0};
-            final int[] food = {0};
+            final int[] foods = {0};
             @Override
             public void actionPerformed(ActionEvent e) {
                 String playerName = playerNameField.getText();
@@ -137,11 +137,12 @@ public class Main {
                 TEXTOS5(playerName, coinCounter);
                 TEXTOS6(playerName, coinCounter);
                 TEXTOS7(playerName, coinCounter);
+                TEXTOS8(playerName, coinCounter);
 
                 coins[0] = 50;
                 coinCounter.setText("Moedas: " + coins[0]);
-                food[0] = 80;
-                foodLabel.setText("Comida: " + food[0]);
+                foods[0] = 80;
+                foodLabel.setText("Comida: " + foods[0]);
             }
         });
 
@@ -182,7 +183,7 @@ public class Main {
                                                                     + "\nÉ um baú cheio de joias e ouro!!!");
         JOptionPane.showMessageDialog(null, "Sarah Fortune: Você terá que enfrentar um tubarão... Mas pelo o que eu ja ouvi de você, "
                                                                     + "\nisso será moleza... De qualquer modo, eu não estou te dando escolha! "
-                                                                    + "\nSó tome cuidado. Eu odiaria perder minha fortuna por erro seu... ");
+                                                                    + "\nSó tome cuidado. Eu odiaria perder minha fortuna por um erro seu... ");
         int escolha = JOptionPane.showOptionDialog(null, "Como você prefere enfrentar o tubarão?", "Escolha sua ação", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"Atacar o tubarão", "Tentar modo furtivo"}, null);
         if (escolha == JOptionPane.YES_OPTION) {
             JOptionPane.showMessageDialog(null, "Você decide atacar o tubarão! Corajoso, " + playerName + "!");
@@ -213,9 +214,9 @@ public class Main {
         int coinsEarned = 50;
         int foodLost = 20;
 
-        int currentFood = Integer.parseInt(foodLabel.getText().split(": ")[1]); // Alterei para comidaLabel
+        int currentFood = Integer.parseInt(foodLabel.getText().split(": ")[1]);
         int totalFood = currentFood - foodLost;
-        foodLabel.setText("Comida: " + totalFood); // Alterei para comidaLabel
+        foodLabel.setText("Comida: " + totalFood);
 
 
         JOptionPane.showMessageDialog(null, "Você está no modo furtivo. Ganhou " + coinsEarned + " moedas, mas perdeu " + foodLost + " de comida.");
@@ -302,8 +303,8 @@ public class Main {
                                                                     + "\npagos pela produtividade.");
         JOptionPane.showMessageDialog(null, "Narrador: O vislumbre atacou a capitã, e a distribuição das recompensas entre os tripulantes "
                                                                     + "\nnão os agrada muito.");
-        JOptionPane.showMessageDialog(null, "Narrador: Você percebe que há um conflito com a administração classica, onde todos se esforçam pelo "
-                                                                    + "\nnavio da capitã, sendo assim devem ser reconhecidos. No entanto, "
+        JOptionPane.showMessageDialog(null, "Narrador: Você percebe que há um conflito, pois já que todos se esforçam pelo "
+                                                                    + "\nnavio da capitã, todos  devem ser reconpensados de forma justa. No entanto, "
                                                                     + "\nisso não tem acontecido direito...");
         JOptionPane.showMessageDialog(null, "Tripulante 1: Capitã, não acho que esteja sendo justa com a nossa recompensa!");
         JOptionPane.showMessageDialog(null, "Sarah Fortune: Oh marujo, ao meu ver isto é mais que o suficiente para vocês. Se não fosse por mim, "
@@ -319,14 +320,15 @@ public class Main {
         int escolha = JOptionPane.showOptionDialog(null, "Como você prefere resolver essa situação?", "Escolha sua ação: ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"Conversar com a capitã de forma pacífica", "Gritar com a capitã na frente de todos"}, null);
         if (escolha == JOptionPane.YES_OPTION) {
             JOptionPane.showMessageDialog(null, "Você decide conversar com a capitã de forma pacífica.");
-            JOptionPane.showMessageDialog(null, playerName + ": Escute, capitã... Nós somos seus companheiros, eles não querem te arruinar, estão todos do seu "
+            JOptionPane.showMessageDialog(null, playerName + ": Escute capitã, nós somos seus companheiros, eles não querem te arruinar, estão todos do seu "
                                                                         + "\nlado. os remunere como deve, pois você sabe que merecem.");
-            JOptionPane.showMessageDialog(null, "Sarah Fortune: Quem você pensa que é " + playerName + "? Eu sei bem o que merecem. não sei se devo te lembrar "
+            JOptionPane.showMessageDialog(null, "Sarah Fortune: Quem você pensa que é " + playerName + "? Eu sei bem o que vocês merecem. Não sei se devo te lembrar "
                                                                         + "\nmas eu sou a capitã do navio!");
             JOptionPane.showMessageDialog(null, playerName + ": Sabe que eles acabariam com você, não sabe? só não fazem isso porque são como cães fieis a você. "
                                                                         + "\nEntregue a eles o que pediram a você!");
             JOptionPane.showMessageDialog(null, "Narrador: Sarah te ouviu e distribuiu mais 300 moedas entre os tripulantes incluindo você.");
-
+            JOptionPane.showMessageDialog(null, "Narrador: Parabens marujo, você conseguiu usar o mecanismo de defesa da racionalização, adquirindo os recursos "
+                                                                         + "\nnecessários para o sustento da tripulação e o enriquecimento do capitão.");
 
             int currentCoins = Integer.parseInt(coinCounter.getText().split(": ")[1]);
             int totalCoins = currentCoins + 300;
@@ -339,33 +341,35 @@ public class Main {
             JOptionPane.showMessageDialog(null, "Narrador: Os tripulantes começam a gritar em uníssono, cobrando a capitã.");
             JOptionPane.showMessageDialog(null, "Sarah Fortune: Tudo bem! Tudo bem! Parem com essa gritaria, seus animais! Darei moedas "
                                                                         + "\na mais para vocês, mas parem com essa algazarra que aqui não é circo!");
-            JOptionPane.showMessageDialog(null, "Narrador: Sarah te ouviu e distribuiu mais 300 moedas entre os tripulantes incluindo você, "
+            JOptionPane.showMessageDialog(null, "Narrador: Sarah te ouviu e distribuiu mais 100 moedas entre os tripulantes incluindo você, "
                                                                         + "\nmas ela não ficou nem um pouco contente com suas atitudes...você deixou "
                                                                         + "\nde ser o queridinho da capitã...");
 
 
             int currentCoins = Integer.parseInt(coinCounter.getText().split(": ")[1]);
-            int totalCoins = currentCoins + 300;
+            int totalCoins = currentCoins + 100;
             coinCounter.setText("Moedas: " + totalCoins);
+            JOptionPane.showMessageDialog(null, "Narrador: Que pena marujo, você não conseguiu usar o mecanismo de defesa da racionalização! "
+                                                                        + "\nMesmo assim conseguiu adquirir poucos recursos para o sustento da tripulação e a capitã "
+                                                                        + "\nficou com a maior parte do tesouro para si.");
         }
     }
 
     public static void TEXTOS5(String playerName, JLabel coinCounter) {
-        JOptionPane.showMessageDialog(null, "Narrador: Depois de alguns dias em alto mar, você se deparam com um polvo gigante tentando atacar o navio.");
+        JOptionPane.showMessageDialog(null, "Narrador: Depois de alguns dias em alto mar, você se deparam com um polvo gigante tentando atacar o navio!");
         JOptionPane.showMessageDialog(null, "Narrador: Sarah corre e se esconde dentro do convés, deixando os tripulantes confusos e soltos sem direção.");
         JOptionPane.showMessageDialog(null, "Narrador: Enfrentando o ataque do polvo gigante, a tripulação do navio Pérola Negra se vê diante de um "
                                                                     + "\ndesafio monumental. Diante do desespero da capitã Sarah, você assume o comando do navio e se depara "
-                                                                    + "\ncom a necessidade de aplicar aprendizados de mecanismos de defesa, incluindo a sublimação, "
-                                                                    + "\nsegundo fundamentos da administração.");
-        JOptionPane.showMessageDialog(null, "Narrador: Diante da ameaça iminente do monstro marinho, você precisa tomar uma decisão estratégica para "
-                                                                    + "\nproteger o navio e sua tripulação, enquanto lida com suas próprias emoções e as dos demais "
-                                                                    + "\ntripulantes.");
-        JOptionPane.showMessageDialog(null, "Narrador: Utilizando a sublimação, um mecanismo de defesa segundo os fundamentos da psicologia, você canaliza suas "
-                                                                    + "\nemoções negativas, como ansiedade e medo, para a ação produtiva e construtiva. Isso significa que, ao invés de "
-                                                                    + "\nsucumbir ao pânico, ele transforma essas emoções em \nenergia motivadora para liderar a tripulação em uma "
-                                                                    + "\nbatalha intensa contra o polvo gigante.");
-        JOptionPane.showMessageDialog(null, "Narrador: Essa capacidade de sublimar as emoções permite você a agir com determinação e coragem, mesmo diante de "
-                                                                    + "\ncircunstâncias adversas, \ngarantindo a segurança do navio e de seus companheiros.");
+                                                                    + "\ncom a necessidade de aplicar aprendizados de mecanismos de defesa, segundo os "
+                                                                    + "\nfundamentos da psicologia e administração.");
+        JOptionPane.showMessageDialog(null, "Narrador: Com da ameaça iminente do monstro marinho, você precisa tomar uma decisão estratégica para proteger "
+                                                                    + "\no navio e sua tripulação, enquanto lida com suas próprias emoções e as dos demais tripulantes. Utilizando "
+                                                                    + "\na sublimação, um mecanismo de defesa, você canaliza suas emoções negativas, como ansiedade e medo, para "
+                                                                    + "\na ação produtiva e construtiva");
+        JOptionPane.showMessageDialog(null, "Narrador: Isso significa que, ao invés de sucumbir ao pânico, ele transforma essas emoções em energia motivadora para "
+                                                                    + "\nliderar a tripulação em uma batalha intensa contra o polvo gigante. Essa capacidade de sublimar as "
+                                                                    + "\nemoções permitiu que " + playerName + " agisse com determinação e coragem, mesmo diante de circunstâncias "
+                                                                    + "\nadversas, garantindo a liderança do navio e de seus companheiros.");
         int escolha = JOptionPane.showOptionDialog(null, "Como você vai atacar o polvo gigante?", "Escolha sua ação: ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"Atacar com os canhões", "Atacar com todas as armas do navio"}, null);
 
         if (escolha == JOptionPane.YES_NO_OPTION) {
@@ -385,7 +389,7 @@ public class Main {
                                                                         + "\ncoordenação eficaz das ações.");
             JOptionPane.showMessageDialog(null,  playerName + ": Companheiros, vamos usar todas as armadilhas disponíveis! Precisamos nos defender e neutralizar "
                                                                         + "\nessa ameaça com astúcia!");
-            JOptionPane.showMessageDialog(null, "Tripulantes: Entendido, " + playerName + "! Vamos mostrar a esse monstro do mar do que somos capazes!");
+            JOptionPane.showMessageDialog(null, "Tripulantes: Entendido, " + playerName + "!");
             JOptionPane.showMessageDialog(null, "Narrador: Após uma batalha assuida contra a fera do mar, você e os tripulantes conseguem deter a fera marinha. Você não "
                                                                         + "\nconseguiu controlar suas emoções usando o mecanismo de defesa da sublimação, mas o tripulantes não perceberam! "
                                                                         + "\nNo entanto você e boa parte da tripulação saiu machucada. O navio sofreu muitos danos, mas tudo bem, "
@@ -411,29 +415,28 @@ public class Main {
             JOptionPane.showMessageDialog(null, playernName +": Capitã, precisamos conversar a sós. Descobri que há um plano para me colocar na prancha. "
                                                                         + "\nSei que as coisas não estão bem entre nós, mas traição não é o caminho.");
             JOptionPane.showMessageDialog(null, "Sarah Fortune: O quê? Como ousa espalhar essas mentiras? \nNão temos tempo para suas conspirações, estamos em alto mar!");
-            JOptionPane.showMessageDialog(null, playernName+": Não são mentiras, capitã. Sei que algo mudou entre nós, mas isso não justifica tentar me eiliminar. "
+            JOptionPane.showMessageDialog(null, playernName+": Não são mentiras, capitã. Sei que algo mudou entre nós, mas isso não justifica tentar me eliminar. "
                                                                         + "\nA tripulação está descontente, e se unir contra voçê não é o que desejo, "
                                                                         + "\nmas é o que pode acontecer se não resolvemos isso agora.");
             JOptionPane.showMessageDialog(null, "Sarah Fortune: Você está fora de si, "+ playernName+". Mas seja como for, não vou permitir que interfira em meus planos!");
             JOptionPane.showMessageDialog(null, "Narrador: A tensão atinge seu ápice enquanto o você confronta diretamente a capitã, desafiando sua autoridade e expondo "
                                                                         + "\nos planos de traição. A abordagem da capitã reflete os princípios da administração clássica, onde a liderança é "
                                                                         + "\nexercida de maneira autoritária e centralizada, sem considerar as opiniões ou preocupações dos subordinados. "
-                                                                        + "\nEnquanto isso, os canhões do navio são posicionados estrategicamente e os \ntripulantes recebem instruções "
+                                                                        + "\nEnquanto isso, os canhões do navio são posicionados estrategicamente e os tripulantes recebem instruções "
                                                                         + "\npara reforçar as barricadas, preparando-se para qualquer eventual confronto.");
         } else {
             JOptionPane.showMessageDialog(null, playernName +": Tripulantes, reuni vocês aqui hoje para apresentar algo crucial. Tenho evidências de que a capitã está "
-                                                                                    + "\nplanejando me colocar na prancha. \nSei que as coisas não estão bem, mas traição não é a resposta.");
+                                                                        + "\nplanejando me colocar na prancha. \nSei que as coisas não estão bem, mas traição não é a resposta.");
             JOptionPane.showMessageDialog(null, "Tripulante 1: Evidências? Do que está falando?");
             JOptionPane.showMessageDialog(null, playernName +": Tenho testemunhos de outros membros da tripulação. Não podemos deixar que a capitã nos divida, precisamos "
-                                                                                    + "\nnos unir para proteger o navio e nossos interesses.");
+                                                                        + "\nnos unir para proteger o navio e nossos interesses.");
             JOptionPane.showMessageDialog(null, "Tripulante 2: Se isso for verdade...");
             JOptionPane.showMessageDialog(null, playernName +": A verdade está diante de nós, amigos. Precisamos agir com cautela, mas com determinação. Juntos, "
-                                                                                    + "\npodemos mudar o rumo desta situação.");
+                                                                        + "\npodemos mudar o rumo desta situação.");
             JOptionPane.showMessageDialog(null, "Narrador: Ao apresentar as evidências aos tripulantes, o jogador consegue semear dúvidas sobre a capitã e conquistar o "
-                                                                        + "\napoio da maioria da tripulação. Essa abordagem mais participativa reflete uma quebra com os princípios da "
-                                                                        + "\nadministração clássica, onde a liderança é exercida de forma autocrática. Enquanto isso, armadilhas são "
-                                                                        + "\npreparadas em pontos estratégicos do navio, garantindo a defesa contra qualquer tentativa de "
-                                                                        + "\nretaliação por parte da capitã.");
+                                                                        + "\napoio da maioria da tripulação, refletindo uma quebra com os princípios da administração clássica. "
+                                                                        + "\nEnquanto isso, armadilhas são preparadas em pontos estratégicos do navio, garantindo a defesa contra "
+                                                                        + "\nqualquer tentativa de retaliação por parte da capitã.");
         }
     }
 
@@ -466,23 +469,21 @@ public class Main {
             JOptionPane.showMessageDialog(null, playerName + ": Ninguém é dono da lealdade de ninguém. Você abusou de sua posição e agora está colhendo as "
                                                                         + "\nconsequências. Parta agora, e não farei nada para impedi-la.");
             JOptionPane.showMessageDialog(null, "Narrador: Com relutância, a capitã Sarah Fortune parte do navio Pérola Negra, deixando para trás sua antiga "
-                                                                        + "\nposição de poder. O jogador assume o comando, guiando a tripulação em direção a um novo futuro, baseado "
-                                                                        + "\nna cooperação e no respeito mútuo. Ao optar por uma abordagem mais pacífica e colaborativa, o jogador "
-                                                                        + "\ndemonstra sua compreensão dos princípios da administração científica. Ao buscar resolver conflitos "
-                                                                        + "\nsem recorrer à violência, o jogador promove um ambiente de trabalho mais harmonioso e produtivo, "
-                                                                        + "\nonde os interesses e bem-estar da tripulação são priorizados para aumentar a eficácia e "
-                                                                        + "\nprodutividade do navio.");
+                                                                        + "\nposição de poder. " + playerName + " assume o comando, guiando a tripulação em direção a um novo futuro, "
+                                                                        + "\nbaseado na cooperação e no respeito mútuo. Ao buscar resolver conflitos sem recorrer à violência, você"
+                                                                        + "\ndemonstra sua compreensão dos princípios da administração científica. Onde os interesses e bem-estar "
+                                                                        + "\nda tripulação são priorizados para aumentar a eficácia e produtividade do navio.");
         }
     }
 
     public static void TEXTOS8(String playerName, JLabel coinCounter){
         Random rand = new Random(1);
         JOptionPane.showMessageDialog(null, "Após superar inúmeras adversidades e desafios, o navio Pérola Negra navega em águas tranquilas, refletindo "
-                                                                    + "\nsobre as lições aprendidas ao longo da jornada. O destino final está à vista, e o jogador, agora capitão "
-                                                                    + "\ndo navio, prepara-se para o último trecho da viagem.");
-        int escolha = JOptionPane.showOptionDialog(null, "Qual vai ser seu estilo de comando como capitão(ã)?", "Escolha sua ação: ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"Conduzir com liderança humanísta", "Continuar com comando autoritário"}, null);
+                                                                    + "\nsobre as lições aprendidas ao longo da jornada. O destino final está à vista, " + playerName + ", "
+                                                                    + "\nagora capitão(ã) do navio, prepara-se para o último trecho da viagem.");
+        int escolha = JOptionPane.showOptionDialog(null, "Qual será seu estilo de comando como capitão(ã)?", "Escolha sua ação: ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"Conduzir com liderança humanísta", "Continuar com comando autoritário"}, null);
         if(escolha == JOptionPane.YES_OPTION) {
-            JOptionPane.showMessageDialog(null, "Você escolheu conduzir a tripulação de forma humanísta! Promovendo o bem-estar e a colaboraçãoentre todos a bordo, "
+            JOptionPane.showMessageDialog(null, "Você escolheu conduzir a tripulação de forma humanísta! Promovendo o bem-estar e a colaboração entre todos a bordo, "
                                                                         + "buscando o desenvolvimento pessoal e a valorização de cada membro da tripulação.");
             JOptionPane.showMessageDialog(null, playerName + ": Tripulação, chegamos ao momento final desta jornada. Quero expressar minha gratidão por cada um de vocês e "
                                                                         + "\npelo esforço que dedicaram a esta viagem. Juntos, superamos desafios que pareciam insuperáveis, e é isso "
@@ -491,10 +492,9 @@ public class Main {
             JOptionPane.showMessageDialog(null, playerName+ ": Cada um de vocês tem um papel importante nesta jornada, e é meu dever garantir que todos se sintam "
                                                                         + "\nvalorizados e ouvidos. Vamos continuar navegando com coragem e determinação, mantendo sempre em mente os "
                                                                         + "\nvalores que nos guiaram até aqui.");
-            JOptionPane.showMessageDialog(null, "Narrador: Sob a liderança do jogador, o navio Pérola Negra segue adiante, fortalecido pela união e cooperação "
+            JOptionPane.showMessageDialog(null, "Narrador: Sob a liderança de "+ playerName + ", o navio Pérola Negra segue adiante, fortalecido pela união e cooperação "
                                                                         + "\nde sua tripulação. Cada membro é valorizado e respeitado, criando um ambiente de trabalho onde todos se "
-                                                                        + "\nsentem motivados e engajados em alcançar os objetivos comuns. Os tripulantes trabalham em harmonia, "
-                                                                        + "\ncompartilhando ideias e contribuindo para o sucesso coletivo.");
+                                                                        + "\nsentem motivados e engajados em alcançar os objetivos comuns.");
         } else {
             JOptionPane.showMessageDialog(null, "Você decidiu seguir com uma abordagem autoritária! Impondo sua vontade sobre a tripulação e priorizando seus "
                                                                         + "próprios interesses, desconsiderando o aspecto humano e as necessidades indiviuais dos tripulantes.");
@@ -503,13 +503,13 @@ public class Main {
                                                                         + "\ne qualquer desvio será punido com severidade.");
             JOptionPane.showMessageDialog(null, "Tripulantes: (sussurros e murmúrios de descontentamento)...");
             JOptionPane.showMessageDialog(null, playerName + ": Silêncio! Aqueles que desejam desfrutar dos tesouros desta viagem devem obedecer às minhas regras. "
-                                                                        + "\nNão tolerarei deslealdade ou insubordinaçã!.");
-            JOptionPane.showMessageDialog(null, "Narrador: Sob a liderança autoritária do jogador, o navio Pérola Negra avança em direção ao seu destino final. "
+                                                                        + "\nNão tolerarei deslealdade ou insubordinação!.");
+            JOptionPane.showMessageDialog(null, "Narrador: Sob sua liderança autoritária, o navio Pérola Negra avança em direção ao seu destino final. "
                                                                         + "\nA atmosfera a bordo é tensa e hostil, com a tripulação desmotivada e desunida. O medo e a desconfiança "
-                                                                        + "\npermeiam o ar, minando qualquer esperança de um futuro próspero. Os tripulantes trabalham com receio "
-                                                                        + "\nde represálias, sem espaço para expressar suas opiniões ou contribuir com suas ideias.");
+                                                                        + "\npermeiam o ar, minando qualquer esperança de um futuro próspero.");
         }
         JOptionPane.showMessageDialog(null, "Narrador: A jornada do Pérola Negra chega ao fim, deixando para trás um legado de aprendizado, crescimento e, "
                                                                     + "\nacima de tudo, importância das relações humanas na busca por um objetivo em comum!");
+        JOptionPane.showMessageDialog(null, "Muito obrigado por jogar!");
     }
 }
