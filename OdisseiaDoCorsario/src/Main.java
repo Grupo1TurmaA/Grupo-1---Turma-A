@@ -1,14 +1,15 @@
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Random;
-import java.io.IOException;
-import javax.sound.sampled.*;
-import java.io.File;
+import javax.swing.*; //Importa as classes para criar interfaces gráficas
+import java.awt.*; //Importa classes para gerenciar componentes gráficos
+import java.awt.event.ActionEvent; //Importa classes para gerenciar eventos de ação
+import java.awt.event.ActionListener; //Importa a interface para gerenciar ações de eventos
+import java.util.ArrayList; //Importa a classe ArrayList para listas dinâmicas
+import java.util.Random; //Importa a classe Random para gerar números aleatórios
+import java.io.IOException; //Importa a classe IOException para gerenciar erros de I/O
+import javax.sound.sampled.*; // Importa classes para tocar sons
+import java.io.File; //Importa a classe File para manipulação de arquivos
 
 public class Main {
+    //Declaração de componentes da interface gráfica como campos estáticos para acesso em outros métodos
     static JTextField playerNameField;
     static ArrayList<String> playerNames;
     static JLabel foodLabel;
@@ -16,12 +17,16 @@ public class Main {
     static JLabel coinCounter;
 
     public static void main(String[] args) {
+        //Inicializa variáveis do jogo
         int coin = 0;
         int food = 100;
         int life = 100;
 
+        //Cria a janela principal do jogo
         JFrame frame = new JFrame("Velas do Destino: A Odisséia do Corsário");
         frame.setSize(600, 500);
+
+        //Cria um painel com um fundo personalizado
         JPanel panel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
@@ -33,57 +38,70 @@ public class Main {
         panel.setLayout(null);
         frame.add(panel);
 
+        //Botão para mostrar as instruções do jogo
         JButton instructionsButton = new JButton("Instruções");
         instructionsButton.setBackground(Color.gray);
         instructionsButton.setBounds(100, 400, 100, 30);
         panel.add(instructionsButton);
 
+        //Botão para mostrar as instruções do jogo
         JButton startButton = new JButton("Jogar");
         startButton.setBackground(Color.gray);
         startButton.setBounds(250, 400, 100, 30);
         panel.add(startButton);
 
+        //Botão para fechar o jogo
         JButton closeButton = new JButton("Sair");
         closeButton.setBackground(Color.gray);
         closeButton.setBounds(400, 400, 100, 30);
         panel.add(closeButton);
 
+        //Botão para mostrar os créditos do jogo
         JButton creditsButton = new JButton("Créditos");
         creditsButton.setBackground(Color.gray);
         creditsButton.setBounds(470, 10, 100, 30);
         panel.add(creditsButton);
 
+        //Campo de texto para inserir o nome do jogador
         playerNameField = new JTextField();
         playerNameField.setBounds(200, 350, 200, 30);
         panel.add(playerNameField);
 
+        //Rótulo para mostrar a contagem de moedas
         coinCounter = new JLabel("Moedas: 0");
         coinCounter.setForeground(Color.YELLOW);
         coinCounter.setBounds(10, 10, 100, 20);
         panel.add(coinCounter);
 
+        //Rótulo para mostrar a quantidade de comida
         foodLabel = new JLabel("Comida: 100");
         foodLabel.setForeground(Color.red);
         foodLabel.setBounds(10, 30, 100, 20);
         panel.add(foodLabel);
 
+        //Rótulo para mostrar a quantidade de vida
         lifeLabel = new JLabel("Vida: 100");
         lifeLabel.setForeground(Color.green);
         lifeLabel.setBounds(10, 50, 100, 20);
         panel.add(lifeLabel);
 
+        //Inicializa a lista de nomes de jogadores
         playerNames = new ArrayList<>();
 
+        //Adiciona ação ao botão de créditos
         creditsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //Mostra uma mensagem com os créditos do jogo
                 JOptionPane.showMessageDialog(null, "Desenvolvido por: \nEdward Leal Borges, \nGabriel Rodrigues dos Santos, \nYasmim Oliveira Soares, \nIsabela Miranda Pereira, \nMayara Lupeti Turbiani \n\nRoteirizado por: \nIsabela Miranda Pereira, \nEdward Leal Borges, \nYasmim Oliveira Soares");
             }
         });
 
+        //Adiciona ação ao botão de instruções
         instructionsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //Mostra uma mensagem com as instruções do jogo
                 JOptionPane.showMessageDialog(null, "Esse é um jogo de RPG, ou em inglês, Role-Playing Game, nessa modalidade os jogadores assumem papéis fictícios e interagem em um mundo imaginário. "
                         + "\nEm Velas do Destino: A Odisséia do Corsário, você assume o papel de um marujo que foi exilado por seu capitão e tripulantes antigos, "
                         + "\numa oportunidade surge para embarcar numa aventura com uma capitã famosa e ambiciosa, \nem um novo navio e com "
@@ -93,43 +111,53 @@ public class Main {
             }
         });
 
+        // Adiciona ação ao botão de sair
         closeButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                //Mostra uma mensagem de confirmação para sair do jogo
                 int escolha = JOptionPane.showOptionDialog(null, "Tem certeza que deseja sair?", "Sair",
                         JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"Sim\n", "Não"}, null);
                 switch(escolha) {
                     case JOptionPane.YES_OPTION:
-                        frame.dispose();
+                        frame.dispose(); //Fecha a janela
                         break;
                     case JOptionPane.NO_OPTION:
-                        break;
+                        break; //Não faz nada se a opção for "Não"
                 }
             }
         });
 
+        //Adiciona ação ao botão de jogar
         startButton.addActionListener(new ActionListener() {
-            final int[] coins = {0};
-            final int[] foods = {0};
+            final int[] coins = {0}; //Variável para contagem de moedas
+            final int[] foods = {0}; //Variável para contagem de comida
             @Override
             public void actionPerformed(ActionEvent e) {
+                //Obtém o nome do jogador do campo de texto
                 String playerName = playerNameField.getText();
                 if (playerName.isEmpty()) {
+                    //Mostra mensagem se o campo estiver vazio
                     JOptionPane.showMessageDialog(frame, "Por favor, insira um nome de usuário: ");
                     return;
                 }
                 if (playerNames.contains(playerName)) {
+                    //Mostra mensagem se o nome já existir na lista
                     JOptionPane.showMessageDialog(frame, "Este nome de usuário já existe, por favor, escolha outro.");
                 } else {
+                    //Adiciona o nome à lista de jogadores e mostra mensagem de boas-vindas
                     playerNames.add(playerName);
                     JOptionPane.showMessageDialog(frame, "Bem-vindo, marujo! Hoje será seu dia à caçada ao tesouro, " + playerName + "!");
                 }
+                //Pergunta ao jogador se ele está pronto para começar
                 int opcao = JOptionPane.showConfirmDialog(frame, "Você está pronto para começar? A Sarah irá te ajudar nessa nova jornada épica, " + playerName + "!");
                 if (opcao != JOptionPane.YES_OPTION) {
                     JOptionPane.showMessageDialog(frame, "Opção cancelada. Retornando ao menu");
                     return;
                 }
+                //Mostra a introdução do jogo
                 JOptionPane.showMessageDialog(frame, "Narrador: Você está preso na cela do pirata Barba Negra, pois você é um amotinado que seguiu contra as regras do seu capitão."
                         + "\nMas de repente você ouviu um barulho estranho, e quando menos percebe, escuta um tiro de canhão atingir o navio.");
+                // Chama métodos que contêm o restante da história e lógica do jogo
                 TEXTOS(playerName, coinCounter, foodLabel);
                 TEXTOS2(playerName, coinCounter);
                 TEXTOS3(playerName, coinCounter);
@@ -139,6 +167,7 @@ public class Main {
                 TEXTOS7(playerName, coinCounter);
                 TEXTOS8(playerName, coinCounter);
 
+                //Atualiza a contagem de moedas e comida
                 coins[0] = 50;
                 coinCounter.setText("Moedas: " + coins[0]);
                 foods[0] = 80;
@@ -146,28 +175,37 @@ public class Main {
             }
         });
 
+        //Toca a música tema do jogo de fundo
         playSound("C:\\Users\\mayar\\Documents\\Grupo-1---Turma-A\\itens menu\\Pirates of the Caribbean (Auckland Symphony Orchestra) 1080p.wav");
         frame.setVisible(true);
     }
 
+    //Método para tocar um som a partir de um arquivo
     public static void playSound(String filePath) {
         try {
+            //Carrega o arquivo de áudio
             File audioFile = new File(filePath);
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
 
+            //Obtém um clip de áudio e o abre com o stream de áudio carregado
             Clip clip = AudioSystem.getClip();
             clip.open(audioStream);
+            //Inicia a reprodução do áudio
             clip.start();
         } catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
+            //Captura e imprime qualquer exceção que ocorra durante a reprodução do som
             e.printStackTrace();
         }
     }
 
+    //Método para mostrar uma sequência de diálogos da FASE 1
     public static void TEXTOS(String playerName, JLabel coinCounter, JLabel foodLabel) {
-        Random rand = new Random(1);
+        Random rand = new Random(1); // Cria um objeto Random para possíveis usos
         if (playerNames.contains(playerName))
+            //Mensagem inicial sobre a fuga do jogador
             JOptionPane.showMessageDialog(null, "Narrador: Você fica assustado pois poderia ter morrido, mas ao mesmo tempo agradece ao perceber "
                     + "\nque a bala de canhão atingiu uma parte da cela do navio, e agora você poderá fugir.");
+        //Série de mensagens para avançar a história do jogo
         JOptionPane.showMessageDialog(null, "Narrador: Assim que você sai do porão do navio, você percebe que ele esta sendo invadido por Sarah Fortune, a capitã do Pérola Negra! "
                 + "\nE agora você finalmente terá a chance de começar do zero e se vingar, podendo administrar sua própria vida. ");
         JOptionPane.showMessageDialog(null, "Narrador: Enquanto o Navio está sendo atacado, você consegue uma espada e começa a lutar contra sua antiga tripulação, "
@@ -184,15 +222,20 @@ public class Main {
         JOptionPane.showMessageDialog(null, "Sarah Fortune: Você terá que enfrentar um tubarão... Mas pelo o que eu ja ouvi de você, "
                 + "\nisso será moleza... De qualquer modo, eu não estou te dando escolha! "
                 + "\nSó tome cuidado. Eu odiaria perder minha fortuna por um erro seu... ");
+        //Pergunta ao jogador como ele deseja enfrentar o tubarão
         int escolha = JOptionPane.showOptionDialog(null, "Como você prefere enfrentar o tubarão?", "Escolha sua ação", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"Atacar o tubarão", "Tentar modo furtivo"}, null);
         if (escolha == JOptionPane.YES_OPTION) {
+            //Caso o jogador escolha atacar o tubarão
             JOptionPane.showMessageDialog(null, "Você decide atacar o tubarão! Corajoso, " + playerName + "!");
 
+            //Atualiza o contador de moedas
             int currentCoins = Integer.parseInt(coinCounter.getText().split(": ")[1]);
             int totalCoins = currentCoins + 50;
             coinCounter.setText("Moedas: " + totalCoins);
         } else {
+            //Caso o jogador escolha o modo furtivo
             JOptionPane.showMessageDialog(null, "Você decide tentar modo furtivo para passar pelo tubarão distraindo ele com pote de comida velha.");
+            //Chama o método para a ação furtiva
             modoFurtivo(playerName, coinCounter, foodLabel);
         }
     }
