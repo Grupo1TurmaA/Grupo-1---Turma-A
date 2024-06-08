@@ -36,7 +36,7 @@ public class Main {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                ImageIcon backgroundImage = new ImageIcon("C:\\Users\\mayar\\Documents\\Grupo-1---Turma-A\\itens menu\\IMG_1347.PNG");
+                ImageIcon backgroundImage = new ImageIcon("C:\\Users\\gabriel.rsantos63\\Documents\\Grupo-1---Turma-A\\itens menu\\IMG_1347.PNG");
                 g.drawImage(backgroundImage.getImage(), 0, 0, getWidth(), getHeight(), this);
             }
         };
@@ -124,8 +124,9 @@ public class Main {
                         JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"Sim\n", "Não"}, null);
                 switch(escolha) {
                     case JOptionPane.YES_OPTION:
-                        frame.dispose(); //Fecha a janela
-                        break;
+                        frame.dispose();
+                        System.exit(0);
+                        break;//Fecha a janela
                     case JOptionPane.NO_OPTION:
                         break; //Não faz nada se a opção for "Não"
                 }
@@ -180,28 +181,42 @@ public class Main {
             }
         });
 
-        //Toca a música tema do jogo de fundo
-        playSound("C:\\Users\\mayar\\Documents\\Grupo-1---Turma-A\\itens menu\\Pirates of the Caribbean (Auckland Symphony Orchestra) 1080p.wav");
         frame.setVisible(true);
+
+        //Toca a música tema do jogo de fundo
+        playSound("C:\\Users\\gabriel.rsantos63\\Documents\\Grupo-1---Turma-A\\itens menu\\Pirates of the Caribbean (Auckland Symphony Orchestra) 1080p.wav");
     }
 
     //Método para tocar um som a partir de um arquivo
     public static void playSound(String filePath) {
         try {
-            //Carrega o arquivo de áudio
+            // Carrega o arquivo de áudio
             File audioFile = new File(filePath);
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
 
-            //Obtém um clip de áudio e o abre com o stream de áudio carregado
+            // Obtém um clip de áudio e o abre com o stream de áudio carregado
             Clip clip = AudioSystem.getClip();
             clip.open(audioStream);
-            //Inicia a reprodução do áudio
-            clip.start();
-        } catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
-            //Captura e imprime qualquer exceção que ocorra durante a reprodução do som
+
+            // Loop para tocar a música repetidamente
+            while (true) {
+                clip.start();
+                // Espera até a música acabar
+                while (!clip.isRunning()) {
+                    Thread.sleep(100); // Espera um pouco antes de verificar novamente
+                }
+                while (clip.isRunning()) {
+                    Thread.sleep(100); // Espera até que a música termine
+                }
+                // Reinicia a música
+                clip.setFramePosition(0);
+            }
+        } catch (LineUnavailableException | UnsupportedAudioFileException | IOException | InterruptedException e) {
+            // Captura e imprime qualquer exceção que ocorra durante a reprodução do som
             e.printStackTrace();
         }
     }
+
 
     //Método para mostrar uma sequência de diálogos da FASE 1
     public static void TEXTOS(String playerName, JLabel coinCounter, JLabel foodLabel) {
