@@ -21,6 +21,9 @@ public class Main {
     static JLabel lifeLabel;
     static JLabel coinCounter;
 
+    // Lista de nomes possíveis para a Capitã 
+    static String[] captainNames = {"Sarah Fortune", "Serena Farsight", "Scarlet Fury", "Sylvia Storm", "Sophia Swift"};
+
     public static void main(String[] args) {
         //Inicializa variáveis do jogo
         int coin = 0;
@@ -36,7 +39,7 @@ public class Main {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                ImageIcon backgroundImage = new ImageIcon("C:\\Users\\gabriel.rsantos63\\Documents\\Grupo-1---Turma-A\\itens menu\\IMG_1347.PNG");
+                ImageIcon backgroundImage = new ImageIcon("C:\\Users\\mayar\\Documents\\Grupo-1---Turma-A\\itens menu\\IMG_1347.PNG");
                 g.drawImage(backgroundImage.getImage(), 0, 0, getWidth(), getHeight(), this);
             }
         };
@@ -155,7 +158,9 @@ public class Main {
                     JOptionPane.showMessageDialog(frame, "Bem-vindo, marujo! Hoje será seu dia à caçada ao tesouro, " + playerName + "!");
                 }
                 //Pergunta ao jogador se ele está pronto para começar
-                int opcao = JOptionPane.showConfirmDialog(frame, "Você está pronto para começar? A Sarah irá te ajudar nessa nova jornada épica, " + playerName + "!");
+                String randomCaptainName = getRandomCaptainName();
+
+                int opcao = JOptionPane.showConfirmDialog(frame, "Você está pronto para começar? A " + randomCaptainName.substring(0, randomCaptainName.indexOf(" ")) + " irá te ajudar nessa nova jornada épica, " + playerName + "!");
                 if (opcao != JOptionPane.YES_OPTION) {
                     JOptionPane.showMessageDialog(frame, "Opção cancelada. Retornando ao menu");
                     return;
@@ -164,13 +169,13 @@ public class Main {
                 JOptionPane.showMessageDialog(frame, "Narrador: Você está preso na cela do pirata Barba Negra, pois você é um amotinado que seguiu contra as regras do seu capitão."
                         + "\nMas de repente você ouviu um barulho estranho, e quando menos percebe, escuta um tiro de canhão atingir o navio.");
                 // Chama métodos que contêm o restante da história e lógica do jogo
-                TEXTOS(playerName, coinCounter, foodLabel);
-                TEXTOS2(playerName, coinCounter);
-                TEXTOS3(playerName, coinCounter);
-                TEXTOS4(playerName, coinCounter);
-                TEXTOS5(playerName, coinCounter);
-                TEXTOS6(playerName, coinCounter);
-                TEXTOS7(playerName, coinCounter);
+                TEXTOS(playerName, randomCaptainName, coinCounter, foodLabel);
+                TEXTOS2(playerName, randomCaptainName, coinCounter);
+                TEXTOS3(playerName, randomCaptainName, coinCounter);
+                TEXTOS4(playerName, randomCaptainName, coinCounter);
+                TEXTOS5(playerName, randomCaptainName, coinCounter);
+                TEXTOS6(playerName, randomCaptainName, coinCounter);
+                TEXTOS7(playerName, randomCaptainName, coinCounter);
                 TEXTOS8(playerName, coinCounter);
 
                 //Atualiza a contagem de moedas e comida
@@ -184,7 +189,13 @@ public class Main {
         frame.setVisible(true);
 
         //Toca a música tema do jogo de fundo
-        playSound("C:\\Users\\gabriel.rsantos63\\Documents\\Grupo-1---Turma-A\\itens menu\\Pirates of the Caribbean (Auckland Symphony Orchestra) 1080p.wav");
+        playSound("C:\\Users\\mayar\\Documents\\Grupo-1---Turma-A\\itens menu\\He's a Pirate.wav");
+    }
+
+    // Método para selecionar um nome aleatório da lista de nomes da Capitã
+    public static String getRandomCaptainName() {
+        Random random = new Random();
+        return captainNames[random.nextInt(captainNames.length)];
     }
 
     //Método para tocar um som a partir de um arquivo
@@ -219,27 +230,27 @@ public class Main {
 
 
     //Método para mostrar uma sequência de diálogos da FASE 1
-    public static void TEXTOS(String playerName, JLabel coinCounter, JLabel foodLabel) {
+    public static void TEXTOS(String playerName, String captainName,JLabel coinCounter, JLabel foodLabel) {
         Random rand = new Random(1); // Cria um objeto Random para possíveis usos
         if (playerNames.contains(playerName))
             //Mensagem inicial sobre a fuga do jogador
             JOptionPane.showMessageDialog(null, "Narrador: Você fica assustado pois poderia ter morrido, mas ao mesmo tempo agradece ao perceber "
                     + "\nque a bala de canhão atingiu uma parte da cela do navio, e agora você poderá fugir.");
         //Série de mensagens para avançar a história do jogo
-        JOptionPane.showMessageDialog(null, "Narrador: Assim que você sai do porão do navio, você percebe que ele esta sendo invadido por Sarah Fortune, a capitã do Pérola Negra! "
+        JOptionPane.showMessageDialog(null, "Narrador: Assim que você sai do porão do navio, você percebe que ele esta sendo invadido por " + captainName + ", a capitã do Pérola Negra! "
                 + "\nE agora você finalmente terá a chance de começar do zero e se vingar, podendo administrar sua própria vida. ");
         JOptionPane.showMessageDialog(null, "Narrador: Enquanto o Navio está sendo atacado, você consegue uma espada e começa a lutar contra sua antiga tripulação, "
                 + "\ndeixando claro qual lado você está. E é assim que a história do maior pirata dos sete mares começa... ");
         JOptionPane.showMessageDialog(null, "Narrador: Depois de todo o conflito, você se aliou a Capitã Fortune e agora faz parte da tripulação... Neste momento você "
                 + "\nestá indo para uma caça ao tesouro, e todos os outros piratas estão se preparando "
                 + "\npara a busca do ouro enquanto seguem as ordens da Capitã.");
-        JOptionPane.showMessageDialog(null, "Sarah Fortune: Se apresentem, Marujos! \nHoje temos uma missão mais tranquila, mas não menos importante!");
-        JOptionPane.showMessageDialog(null, "Sarah Fortune: Hoje eu irei escolher um de vocês para capturar algo muito importante... Algo valioso!");
+        JOptionPane.showMessageDialog(null, captainName + ": Se apresentem, Marujos! \nHoje temos uma missão mais tranquila, mas não menos importante!");
+        JOptionPane.showMessageDialog(null, captainName+ ": Hoje eu irei escolher um de vocês para capturar algo muito importante... Algo valioso!");
         JOptionPane.showMessageDialog(null, "Narrador: A capitã olha para todos os tripulantes do navio, mas seus olhos pousam sobre você. ");
-        JOptionPane.showMessageDialog(null, "Sarah Fortune: Aha! É você mesmo que eu estava procurando, " + playerName);
-        JOptionPane.showMessageDialog(null, "Sarah Fortune: Você precisa capturar um tesouro pra mim! MAS... não é qualquer tesouro, marujo... "
+        JOptionPane.showMessageDialog(null, captainName + ": Aha! É você mesmo que eu estava procurando, " + playerName);
+        JOptionPane.showMessageDialog(null, captainName + ": Você precisa capturar um tesouro pra mim! MAS... não é qualquer tesouro, marujo... "
                 + "\nÉ um baú cheio de joias e ouro!!!");
-        JOptionPane.showMessageDialog(null, "Sarah Fortune: Você terá que enfrentar um tubarão... Mas pelo o que eu ja ouvi de você, "
+        JOptionPane.showMessageDialog(null, captainName + ": Você terá que enfrentar um tubarão... Mas pelo o que eu ja ouvi de você, "
                 + "\nisso será moleza... De qualquer modo, eu não estou te dando escolha! "
                 + "\nSó tome cuidado. Eu odiaria perder minha fortuna por um erro seu... ");
 
@@ -262,16 +273,16 @@ public class Main {
     }
 
     // Método que apresenta uma sequência de diálogos da continuação da FASE 1
-    public static void TEXTOS2(String playerName, JLabel coinCounter) {
+    public static void TEXTOS2(String playerName, String captainName, JLabel coinCounter) {
         Random rand = new Random(1); // Cria um objeto Random para possíveis usos
 
         //Se o nome do jogador está na lista de nomes de jogadores
         if (playerNames.contains(playerName))
             //Mostra a continuação do diálogo depois da escolha do jogador dna FASE 1
-            JOptionPane.showMessageDialog(null, "Sarah Fortune: Muito bom marujo. Não imaginava que você conseguiria equilibrar as situações... "
+            JOptionPane.showMessageDialog(null, captainName + ": Muito bom marujo. Não imaginava que você conseguiria equilibrar as situações... "
                     + "\nSe você continuar desse jeito, terei que promover você para um cargo mais importante... ");
         //Mostra uma mensagem onde a capitão recompensa o jogador pela última escolha (recompensas e consequências diferente para cada escolha)
-        JOptionPane.showMessageDialog(null, "Sarah Fortune: Te darei uma pequena recompensa por ter resgatado nosso tesouro perdido! Mas não saia "
+        JOptionPane.showMessageDialog(null, captainName + ": Te darei uma pequena recompensa por ter resgatado nosso tesouro perdido! Mas não saia "
                 + "\ngastando por ai, ouro é uma coisa muito valiosa, " + playerName + ". Administre muito bem...");
     }
 
@@ -296,7 +307,7 @@ public class Main {
 
 
     //Método que apresenta uma sequência de diálogos referentes a FASE 2
-    public static void TEXTOS3(String playerName, JLabel coinCounter) {
+    public static void TEXTOS3(String playerName, String captainName, JLabel coinCounter) {
         Random rand = new Random(1); //Cria um objeto Random para possíveis usos
 
         //Mensagens que definem os diálogos marcando o início da fase
@@ -304,21 +315,21 @@ public class Main {
         JOptionPane.showMessageDialog(null, "Narrador: Após alguns dias a Capitã foi convidada para Tortuga, pelo pirata Barbosa, chegando lá vocês descobrem uma "
                 + "\nnova expedição sendo feita pela Coroa Britânica, cheia de joias, rum, especiarias "
                 + "\ne ouro para ser saqueado!");
-        JOptionPane.showMessageDialog(null, "Narrador: Sarah e Barbosa se encontram em uma taverna junto com sua tripulação reunida "
+        JOptionPane.showMessageDialog(null, "Narrador: " + captainName.substring(0, captainName.indexOf(" ")) + " e Barbosa se encontram em uma taverna junto com sua tripulação reunida "
                 + "\npara conversarem sobre negócios...");
-        JOptionPane.showMessageDialog(null, "Sarah Fortune: Devo dizer que fiquei surpresa com seu convite... "
+        JOptionPane.showMessageDialog(null, captainName + ": Devo dizer que fiquei surpresa com seu convite... "
                 + "\n Depois da párola achei que nunca mais daria as caras por aqui...");
         JOptionPane.showMessageDialog(null, "Barbosa: Ah por favor, não vamos entrar nesse assunto, eu a convidei amigavelmente para um jantar de negócios!");
-        JOptionPane.showMessageDialog(null, "Sarah Fortune: Negócios é? E de que tipo...?");
-        JOptionPane.showMessageDialog(null, "Barbosa: Grandes negócios minha cara Sarah Fortune... muito tesouro, rum, joias e "
+        JOptionPane.showMessageDialog(null, captainName + ": Negócios é? E de que tipo...?");
+        JOptionPane.showMessageDialog(null, "Barbosa: Grandes negócios minha cara " + captainName + "... muito tesouro, rum, joias e "
                 + "\nespeciarias confiscadas pela coroa real...");
         JOptionPane.showMessageDialog(null, "Barbosa: Muito mais do que você já ganhou ou imaginou ter, e então? Está de acordo? "
                 + "\nPodemos nos unir, eu te garanto que a nossa tripulação vai adorar a ideia!!");
-        JOptionPane.showMessageDialog(null, "Sarah Fortune: Mas é óbvio, se envolve dinheiro é claro que vou aceitar, "
+        JOptionPane.showMessageDialog(null, captainName + ": Mas é óbvio, se envolve dinheiro é claro que vou aceitar, "
                 + "\num dia Pérola Negra será feito de ouro!");
-        JOptionPane.showMessageDialog(null, "Narrador: Sarah Fortune aceita a missão em Tortuga. Você junto ao resto da tripulação e a capitã, "
+        JOptionPane.showMessageDialog(null, "Narrador: " + captainName + " aceita a missão em Tortuga. Você junto ao resto da tripulação e a capitã, "
                 + "\nse preparam pensando em um plano para atacar os britânicos. ");
-        JOptionPane.showMessageDialog(null, "Sarah Fortune: Ok homens, eu quero todos em meu convés! Barbosa, me empreste alguns de seus homens. "
+        JOptionPane.showMessageDialog(null, captainName + ": Ok homens, eu quero todos em meu convés! Barbosa, me empreste alguns de seus homens. "
                 + "\nVamos expulsar esses carapaças daqui!");
         JOptionPane.showMessageDialog(null, "Barbosa: Ficou louca? não deixarei meus homens morrerem pela sua investida burra e precipitada de lutar frente "
                 + "\na frente com os britânicos! Está vendo a sua direita? tem umas rochas cobrindo a visão deles. "
@@ -369,12 +380,12 @@ public class Main {
             //Mostra uma mensagem indicando as recompensas obtidas no modo furtivo
             JOptionPane.showMessageDialog(null, "Vocês escolhem se infiltrar na expedição e conseguem roubar 70% do ouro e comida, "
                     + "\ne você recebeu uma parte!");
-            JOptionPane.showMessageDialog(null, "Sarah Fortune: Por respeito a você ter me dado um báu cheio de ouro...");
+            JOptionPane.showMessageDialog(null, captainName + ": Por respeito a você ter me dado um báu cheio de ouro...");
         }
     }
 
     //Método que apresenta uma sequência de diálogos referentes a FASE 3
-    public static void TEXTOS4(String playerName, JLabel coinCounter) {
+    public static void TEXTOS4(String playerName, String captainName, JLabel coinCounter) {
         Random rand = new Random(1); //Cria um objeto Random para possíveis usos futuros
 
         //Mensagens que definem os diálogos marcando o início da fase
@@ -389,11 +400,11 @@ public class Main {
                 + "\nnavio da capitã, todos  devem ser reconpensados de forma justa. No entanto, "
                 + "\nisso não tem acontecido direito...");
         JOptionPane.showMessageDialog(null, "Tripulante 1: Capitã, não acho que esteja sendo justa com a nossa recompensa!");
-        JOptionPane.showMessageDialog(null, "Sarah Fortune: Oh marujo, ao meu ver isto é mais que o suficiente para vocês. Se não fosse por mim, "
+        JOptionPane.showMessageDialog(null, captainName + ": Oh marujo, ao meu ver isto é mais que o suficiente para vocês. Se não fosse por mim, "
                 + "\nao menos iriam saber a localização da coroa.");
         JOptionPane.showMessageDialog(null, "Tripulante 2: Está sendo injusta, capitã! estamos com você a anos, esta mudada, não costumava "
                 + "\nser tão mesquinha desta forma!");
-        JOptionPane.showMessageDialog(null, "Sarah Fortune: Eu sou a ponta deste navio. EU quem mando aqui, e vocês não seriam nada sem mim! "
+        JOptionPane.showMessageDialog(null, captainName + ": Eu sou a ponta deste navio. EU quem mando aqui, e vocês não seriam nada sem mim! "
                 + "\nSe contentem com o que tem, se não os faço andar na prancha!");
         JOptionPane.showMessageDialog(null, "Narrador: Você reconhece a mesma atitude de Barba Negra nos olhos da capitã, temia que aquele "
                 + "\nnavio virasse novamente a mesma prisão de que havia saido. Sendo assim, você decide "
@@ -406,11 +417,11 @@ public class Main {
             JOptionPane.showMessageDialog(null, "Você decide conversar com a capitã de forma pacífica.");
             JOptionPane.showMessageDialog(null, playerName + ": Escute capitã, nós somos seus companheiros, eles não querem te arruinar, estão todos do seu "
                     + "\nlado. os remunere como deve, pois você sabe que merecem.");
-            JOptionPane.showMessageDialog(null, "Sarah Fortune: Quem você pensa que é " + playerName + "? Eu sei bem o que vocês merecem. Não sei se devo te lembrar "
+            JOptionPane.showMessageDialog(null, captainName + ": Quem você pensa que é " + playerName + "? Eu sei bem o que vocês merecem. Não sei se devo te lembrar "
                     + "\nmas eu sou a capitã do navio!");
             JOptionPane.showMessageDialog(null, playerName + ": Sabe que eles acabariam com você, não sabe? só não fazem isso porque são como cães fieis a você. "
                     + "\nEntregue a eles o que pediram a você!");
-            JOptionPane.showMessageDialog(null, "Narrador: Sarah te ouviu e distribuiu mais 300 moedas entre os tripulantes incluindo você.");
+            JOptionPane.showMessageDialog(null, "Narrador: " + captainName.substring(0, captainName.indexOf(" ")) + " te ouviu e distribuiu mais 300 moedas entre os tripulantes incluindo você.");
             JOptionPane.showMessageDialog(null, "Narrador: Parabens marujo, você conseguiu usar o mecanismo de defesa da racionalização, adquirindo os recursos "
                     + "\nnecessários para o sustento da tripulação e o enriquecimento do capitão.");
 
@@ -425,9 +436,9 @@ public class Main {
             JOptionPane.showMessageDialog(null, "Tripulante 1: Nos arriscamos por todos capitã e ainda perdemos alguns homens, apenas "
                     + "\nqueremos nosso dinheiro! Se não a coisa vai ficar seria!");
             JOptionPane.showMessageDialog(null, "Narrador: Os tripulantes começam a gritar em uníssono, cobrando a capitã.");
-            JOptionPane.showMessageDialog(null, "Sarah Fortune: Tudo bem! Tudo bem! Parem com essa gritaria, seus animais! Darei moedas "
+            JOptionPane.showMessageDialog(null, captainName + ": Tudo bem! Tudo bem! Parem com essa gritaria, seus animais! Darei moedas "
                     + "\na mais para vocês, mas parem com essa algazarra que aqui não é um maldito circo!");
-            JOptionPane.showMessageDialog(null, "Narrador: Sarah te ouviu e distribuiu mais 100 moedas entre os tripulantes incluindo você, "
+            JOptionPane.showMessageDialog(null, "Narrador: " + captainName.substring(0, captainName.indexOf(" ")) + " te ouviu e distribuiu mais 100 moedas entre os tripulantes incluindo você, "
                     + "\nmas ela não ficou nem um pouco contente com suas atitudes...você deixou "
                     + "\nde ser o queridinho da capitã...");
 
@@ -444,12 +455,12 @@ public class Main {
     }
 
     //Método que apresenta uma sequência de diálogos referentes a FASE 4
-    public static void TEXTOS5(String playerName, JLabel coinCounter) {
+    public static void TEXTOS5(String playerName, String captainName,JLabel coinCounter) {
         //Mensagens que definem os diálogos marcando o início da fase
         JOptionPane.showMessageDialog(null, "Narrador: Depois de alguns dias em alto mar, você se deparam com um polvo gigante tentando atacar o navio!");
-        JOptionPane.showMessageDialog(null, "Narrador: Sarah corre e se esconde dentro do convés, deixando os tripulantes confusos e soltos sem direção.");
+        JOptionPane.showMessageDialog(null, "Narrador: " + captainName.substring(0, captainName.indexOf(" ")) + " corre e se esconde dentro do convés, deixando os tripulantes confusos e soltos sem direção.");
         JOptionPane.showMessageDialog(null, "Narrador: Enfrentando o ataque do polvo gigante, a tripulação do navio Pérola Negra se vê diante de um "
-                + "\ndesafio monumental. Diante do desespero da capitã Sarah, você assume o comando do navio e se depara "
+                + "\ndesafio monumental. Diante do desespero da capitã " + captainName.substring(0, captainName.indexOf(" ")) + ", você assume o comando do navio e se depara "
                 + "\ncom a necessidade de aplicar aprendizados de mecanismos de defesa, segundo os "
                 + "\nfundamentos da psicologia e administração.");
         JOptionPane.showMessageDialog(null, "Narrador: Com a ameaça iminente do monstro marinho, você precisa tomar uma decisão estratégica para proteger "
@@ -497,24 +508,24 @@ public class Main {
     }
 
     //Método que apresenta uma sequência de diálogos referentes a FASE 5
-    public static void TEXTOS6(String playernName, JLabel coinCounter) {
+    public static void TEXTOS6(String playernName, String captainName, JLabel coinCounter) {
         //Mensagens que definem os diálogos marcando o início da fase
-        JOptionPane.showMessageDialog(null, "Narrador: Com a situação se deteriorando entre a tripulação e a capitã Sarah Fortune, os ânimos estão acirrados "
+        JOptionPane.showMessageDialog(null, "Narrador: Com a situação se deteriorando entre a tripulação e a capitã " + captainName + ", os ânimos estão acirrados "
                 + "\na bordo do navio Pérola Negra. Enquanto isso, rumores de traição circulam pelos corredores do navio, "
                 + "\nalimentando uma atmosfera de desconfiança e conspiração.");
 
         //Abre uma janela que apresenta duas maneiras de enfrentar o conflito
-        int escolha = JOptionPane.showOptionDialog(null, "Como você irá resolver essa situação?", "Escolha sua ação: ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"Confrontar e expor diretamente a capitã Sarah Fortune", "Tentar um plano mais sutil, buscando provas primeiro"}, null);
+        int escolha = JOptionPane.showOptionDialog(null, "Como você irá resolver essa situação?", "Escolha sua ação: ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"Confrontar e expor diretamente a capitã " + captainName + "", "Tentar um plano mais sutil, buscando provas primeiro"}, null);
 
         if (escolha == JOptionPane.YES_OPTION) {
             //Mostra essas mensagens se o jogador escolhe confrontar a capitã diretamente
             JOptionPane.showMessageDialog(null, playernName +": Capitã, precisamos conversar a sós. Descobri que há um plano para me colocar na prancha. "
                     + "\nSei que as coisas não estão bem entre nós, mas traição não é o caminho.");
-            JOptionPane.showMessageDialog(null, "Sarah Fortune: O quê? Como ousa espalhar essas mentiras? \nNão temos tempo para suas conspirações, estamos em alto mar!");
+            JOptionPane.showMessageDialog(null, captainName + ": O quê? Como ousa espalhar essas mentiras? \nNão temos tempo para suas conspirações, estamos em alto mar!");
             JOptionPane.showMessageDialog(null, playernName+": Não são mentiras, capitã. Sei que algo mudou entre nós, mas isso não justifica tentar me eliminar. "
                     + "\nA tripulação está descontente, e se unir contra voçê não é o que desejo, "
                     + "\nmas é o que pode acontecer se não resolvemos isso agora.");
-            JOptionPane.showMessageDialog(null, "Sarah Fortune: Você está fora de si, "+ playernName+". Mas seja como for, não vou permitir que interfira em meus planos!");
+            JOptionPane.showMessageDialog(null, captainName + ": Você está fora de si, "+ playernName+". Mas seja como for, não vou permitir que interfira em meus planos!");
             JOptionPane.showMessageDialog(null, "Narrador: A tensão atinge seu ápice enquanto o você confronta diretamente a capitã, desafiando sua autoridade e expondo "
                     + "\nos planos de traição. A abordagem da capitã reflete os princípios da administração clássica, onde a liderança é "
                     + "\nexercida de maneira autoritária e centralizada, sem considerar as opiniões ou preocupações dos subordinados. "
@@ -538,7 +549,7 @@ public class Main {
     }
 
     //Método que apresenta uma sequência de diálogos referentes a FASE 6
-    public static void TEXTOS7(String playerName, JLabel coinCounter) {
+    public static void TEXTOS7(String playerName, String captainName, JLabel coinCounter) {
         //Cria um objeto Random com uma semente fixa
         Random rand = new Random(1);
 
@@ -547,32 +558,32 @@ public class Main {
                 + "\ndetermina o comando do navio, moldando assim o curso da odisseia do corsário.");
 
         //Abre uma janela que apresenta duas maneiras de enfrentar o conflito
-        int escolha = JOptionPane.showOptionDialog(null, "Como você prefere resolver essa situação?", "Escolha sua ação: ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"Confrontar a capitã num combate mortal", "Expulsar Sarah Fortune de forma pacífica"}, null);
+        int escolha = JOptionPane.showOptionDialog(null, "Como você prefere resolver essa situação?", "Escolha sua ação: ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"Confrontar a capitã num combate mortal", "Expulsar " + captainName + " de forma pacífica"}, null);
         if (escolha == JOptionPane.YES_OPTION){
             //Mostra essas mensagens se o jogador escolhe confrontar a capitã num combate mortal
             JOptionPane.showMessageDialog(null, "Você decide confrontar diretamente a capitã, resultando em um duelo mortal!");
-            JOptionPane.showMessageDialog(null, playerName + ": Capitã Sarah, chegou o momento de acertarmos nossas contas. Você traiu a confiança da tripulação e "
+            JOptionPane.showMessageDialog(null, playerName + ": Capitã " + captainName.substring(0, captainName.indexOf(" ")) + ", chegou o momento de acertarmos nossas contas. Você traiu a confiança da tripulação e "
                     + "\ntentou me eliminar. Não posso permitir que continue no comando deste navio.");
-            JOptionPane.showMessageDialog(null, "Sarah Fortune: Você ousa desafiar minha autoridade? Sou a capitã desse navio e não permitirei que "
+            JOptionPane.showMessageDialog(null, captainName + ": Você ousa desafiar minha autoridade? Sou a capitã desse navio e não permitirei que "
                     + "\num insolente como você me subjugue!");
             JOptionPane.showMessageDialog(null, playerName + ": Suas palavras não mudarão a situação. Seu reinado termina aqui. Prepare-se para enfrentar as "
                     + "\nconsequências de suas ações.");
-            JOptionPane.showMessageDialog(null, "Narrador: Determinado a não ceder às manipulações da capitã, o jogador enfrenta Sarah Fortune em um duelo mortal. "
+            JOptionPane.showMessageDialog(null, "Narrador: Determinado a não ceder às manipulações da capitã, o jogador enfrenta " + captainName + " em um duelo mortal. "
                     + "\nCom habilidade e determinação, o jogador emerge vitorioso, assumindo o comando do navio Pérola Negra como o "
-                    + "\nnovo capitão. Ao confrontar diretamente a capitã Sarah e assumir o comando do navio, o jogador demonstra "
+                    + "\nnovo capitão. Ao confrontar diretamente a capitã " + captainName.substring(0, captainName.indexOf(" ")) + " e assumir o comando do navio, o jogador demonstra "
                     + "\numa abordagem baseada nos princípios da administração científica. Ao identificar e lidar com problemas "
                     + "\nde forma direta, o jogador busca aumentar a eficácia e produtividade do navio, promovendo "
                     + "\numa atmosfera de trabalho mais organizada e eficiente.");
         }
         else {
             //Mostra essas mensagens e o jogador escolhe expulsar a capitã de forma pacífica
-            JOptionPane.showMessageDialog(null, "Você opta por uma abordagem mais pacífica, expulsando Sarah Fortune da tripulação sem derramamento de sangue.");
-            JOptionPane.showMessageDialog(null, playerName + "Capitã Sarah, suas ações prejudicaram a todos nós. É hora de partir, seus dias como líder deste "
+            JOptionPane.showMessageDialog(null, "Você opta por uma abordagem mais pacífica, expulsando " + captainName + " da tripulação sem derramamento de sangue.");
+            JOptionPane.showMessageDialog(null, playerName + "Capitã " + captainName.substring(0, captainName.indexOf(" ")) + ", suas ações prejudicaram a todos nós. É hora de partir, seus dias como líder deste "
                     + "\nnavio acabaram. Não desejo derramar sangue, mas não permitirei que continue a semear discórdia entre nós.");
-            JOptionPane.showMessageDialog(null, "Sarah Fortune: Você pensa que pode me expulsar? Eu sou a capitã desse navio, e vocês todos me devem lealdade!");
+            JOptionPane.showMessageDialog(null, captainName+ ": Você pensa que pode me expulsar? Eu sou a capitã desse navio, e vocês todos me devem lealdade!");
             JOptionPane.showMessageDialog(null, playerName + ": Ninguém é dono da lealdade de ninguém. Você abusou de sua posição e agora está colhendo as "
                     + "\nconsequências. Parta agora, e não farei nada para impedi-la.");
-            JOptionPane.showMessageDialog(null, "Narrador: Com relutância, a capitã Sarah Fortune parte do navio Pérola Negra, deixando para trás sua antiga "
+            JOptionPane.showMessageDialog(null, "Narrador: Com relutância, a capitã " + captainName + " parte do navio Pérola Negra, deixando para trás sua antiga "
                     + "\nposição de poder. " + playerName + " assume o comando, guiando a tripulação em direção a um novo futuro, "
                     + "\nbaseado na cooperação e no respeito mútuo. Ao buscar resolver conflitos sem recorrer à violência, você"
                     + "\ndemonstra sua compreensão dos princípios da administração científica. Onde os interesses e bem-estar "
